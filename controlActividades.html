@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="jquery.min.js" type="text/javascript" language="javascript"></script>
+	<title>Control Actividades</title>
+</head>
+<body>
+	<h1 id="nombreUsuario"></h1>
+	<input type="button" name="desconectar" id="desconectar" value="Cerrar Sesión">
+	<hr>
+
+	Cree la fiche tecnica de la actividad: <br>
+	Nombre actividad: <input type="text" name="nombreActividad" id="nombreActividad" placeholder="Nombre Actividad"> <br>
+	Tema Actividad: <input type="text" name="temaActividad" id="temaActividad" placeholder="Tema Actividad"> <br>
+	Área Actividad: <SELECT id="listaArea"></SELECT><br>
+	Descripción: <br>  <textarea rows="4" cols="50" id="descripcionActividad"></textarea> <br>
+	Fecha liberación: <input type="date" name="fechaLiberacion" id="fechaLiberacion"><br>
+	Tipo Actividad: <SELECT id="listaTipo"></SELECT><br>
+	<hr>
+
+	<div id="apartadoDecenas">
+		Crear actividad de unidades, decenas y centenas: <br>
+		Inserte Unidades: <input type="text" name="unidades" id="unidades"> <br>
+		Inserte Decenas: <input type="text" name="decenas" id="decenas"> <br>
+		Inserte Centenas: <input type="text" name="centenas" id="centenas"> <br>
+		Inserte respuestas distractoras (separadas por [,]): <input type="text" name="respuestasD" id="respuestasD"> <br>
+		Retroalimentación (Maximo 800 caracteres):<br>  <textarea rows="4" cols="50" id="descripcionRetro"></textarea> <br>
+		<input type="button" name="crearDecenas" id="crearDecenas" value="Crear Actividad"> <br>
+	</div>
+	<hr>
+	<div id="apartadoSopaLetras">
+		Crear actividad de Sopa de Letras <br>
+		Ingrese el número de palabras: <input type="text" name="numeroPalabras" id="numeroPalabras">
+		<div id="almacenDePalabras">
+			
+		</div>
+		<input type="button" name="crearSopa" id="crearSopa" value="Crear Actividad">
+	</div>
+
+	<div id="apartadoCrucigrama">
+		
+	</div>
+
+</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+
+		document.getElementById("desconectar").onclick = function () { desconectar(); };
+		document.getElementById("crearDecenas").onclick = function () { crearActividadDecenas(); };
+
+		function crearActividadUnidades(idActividad){
+			var unidades = $("#unidades").val();
+			var decenas = $("#decenas").val();
+			var centenas = $("#centenas").val();
+			var respuestasD = $("#respuestasD").val();
+			var descripcionRetro = $("#descripcionRetro").val();
+
+			$.ajax({ url: './MaestroController.php',
+				data: {tipo: "crearActividadUnidades", unidades: unidades, decenas: decenas, centenas: centenas, respuestasD: respuestasD, descripcionRetro: descripcionRetro, idActividad: idActividad},
+				type: 'post',
+				success: function(output) {
+					alert(output);
+				}
+			});
+		}
+
+		function crearActividadDetalle(indiceActividad){
+			var nombreActividad = $("#nombreActividad").val();
+			var temaActividad = $("#temaActividad").val();
+			var areaActividad = $("#listaArea option:selected").text();
+			var idAreaActividad = areaActividad.split("-")[0];
+			var descripcionActividad = $("#descripcionActividad").val();
+			var fechaLiberacion = $("#fechaLiberacion").val();
+			var tipoActividad = $("#listaTipo option:selected").text();
+			var idTipoActividad = tipoActividad.split("-")[0];
+			
+			$.ajax({ url: './MaestroController.php',
+				data: {tipo: "crearActividadDetalle", nombreActividad: nombreActividad, temaActividad: temaActividad, idAreaActividad: idAreaActividad, descripcionActividad: descripcionActividad, fechaLiberacion: fechaLiberacion, idTipoActividad: idTipoActividad},
+				type: 'post',
+				success: function(output) {
+					alert(output);
+					if (output !== "Ya existe una actividad con ese nombre, tipo y area." && output !== "No existe el area educaional seleccionada." && output !== "No existe el tipo de actividad seleccionada." && output !== "Error en carga"){
+						if (indiceActividad == 1){
+							crearActividadUnidades(output);
+						}
+					}
+					
+				}
+			});
+			
+		}
+
+		function crearInputPalabras(){
+			var numeroPalabras = $("#numeroPalabras").val();
+			$("#almacenDePalabras").empty();
+			var htmlGeneral = "";
+			for (var i = 0; i < numeroPalabras; i++) {
+				htmlGeneral += "Palabra #" + i + ": <Input type='text' id='input" + i + "'> Descripción: " + "<Input type='text' id='descripPalabra" + i + "'> <br>"; 
+			}
+			$("#almacenDePalabras").append(htmlGeneral);
+		}
+
+		function crearActividadDecenas(){
+			if(verificarCampos()){
+				crearActividadDetalle(1);
+			} else {
+				alert("Rellene todos los campos");
+			}
+		}
+
+		function verificarCampos(){
+			var nombreActividad = $("#nombreActividad").val();
+			var temaActividad = $("#temaActividad").val();
+			var areaActividad = $("#listaAreas option:selected").val();
+			var descripcionActividad = $("#descripcionActividad").val();
+			var fechaLiberacion = $("#fechaLiberacion").val();
+			var tipoActividad = $("#listaTipo option:selected").val();
+
+			if(nombreActividad == "" || temaActividad == "" || descripcionActividad == "" || fechaLiberacion == "" || tipoActividad == 0 || areaActividad == 0){
+				return false;
+			} else {
+				return true;
+			}
+
+		}
+
+		function obtenerAreas(){
+			$.ajax({ url: './MaestroController.php',
+				data: {tipo: "obtenerAreas"},
+				type: 'post',
+				success: function(output) {
+					var listaAreas = output.split(",");
+					var htmlListas = "<option value = '0'> Seleccione Área </option>";
+					for (var i = 0; i < listaAreas.length - 1; i++) {
+						htmlListas += "<option value=\""+(i+1)+"\">"+listaAreas[i]+"</option>";
+					}
+					$("#listaArea").append(htmlListas);
+				}
+			});
+		}
+		function obtenerTipoActividades(){
+			$.ajax({ url: './MaestroController.php',
+				data: {tipo: "obtenerTipoActividades"},
+				type: 'post',
+				success: function(output) {
+					var listaAreas = output.split(",");
+					var htmlListas = "<option value = '0'> Seleccione Tipo Actividad </option>";
+					for (var i = 0; i < listaAreas.length - 1; i++) {
+						htmlListas += "<option value=\""+(i+1)+"\">"+listaAreas[i]+"</option>";
+					}
+					$("#listaTipo").append(htmlListas);
+				}
+			});
+		}
+
+		function desconectar(){
+			$.ajax({ url: './auth.php',
+				data: {tipo: "desconectar"},
+				type: 'post',
+				success: function(output) {
+					alert(output);
+					location.href="/index";
+
+				}
+			});
+		}
+		function verificarInicioSesion(){
+			$.ajax({ url: './auth.php',
+				data: {tipo: "verificar"},
+				type: 'post',
+				success: function(output) {
+					if (output === "0"){
+						location.href="/index";
+					} else {
+						$("#nombreUsuario").append(output);
+					}
+				}
+			});
+		}
+		$("#numeroPalabras").change(function(){
+			crearInputPalabras();
+		});
+
+		verificarInicioSesion();
+		obtenerAreas();
+		obtenerTipoActividades();
+	});
+</script>
