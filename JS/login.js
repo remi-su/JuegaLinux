@@ -22,7 +22,7 @@ $(document).ready(function(){
 			type: 'post',
 			success: function(output) {
 				if (output === "0"){
-					location.href="./controlAlumnosMaestro";
+					location.href="./controlActividades";
 				} else {
 					alert(output);
 				}
@@ -38,7 +38,7 @@ $(document).ready(function(){
 				if (output === "0"){
 					
 				} else {
-					location.href="./controlAlumnosMaestro";
+					location.href="./controlActividades";
 				}
 			}
 		});

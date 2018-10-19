@@ -267,7 +267,7 @@ function crearActividad(){
 		$resultado = ConectarBaseDatos($sql);
 		if ($resultado->num_rows > 0){
 			
-			$sql = "SELECT * FROM actividades WHERE idMaestro = $idMAestro AND nombreActividad = '$nombreActividad' AND idTipoActividad = $idTipoActividad AND idAreaActividad = $idAreaActividad";
+			$sql = "SELECT * FROM actividades WHERE idMaestro = $idMaestro AND nombreActividad = '$nombreActividad' AND idTipoActividad = $idTipoActividad AND idAreaActividad = $idAreaActividad";
 			$resultado = ConectarBaseDatos($sql);
 			if($resultado->num_rows <= 0){
 				$sql = "INSERT INTO `actividades`(`nombreActividad`,`idMaestro`, `temaActividad`, `idAreaActividad`, `descripcion`, `idTipoActividad`, `fechaCreacion`, `fechaLiberacion`) VALUES ('$nombreActividad',$idMaestro,'$temaActividad',$idAreaActividad,'$descripciónActividad','$idTipoActividad','$fechaCreacion','$fechaLiberacion')";
@@ -299,7 +299,7 @@ function crearActividadUnidades(){
 	$respuestasDistractoras = $_POST["respuestasD"];
 	$descripcionRetro = $_POST["descripcionRetro"];
 	$idActividad = $_POST["idActividad"];
-	$
+	
 
 	$sql ="SELECT * FROM unidadesdescenascentenas WHERE idActividad = $idActividad";
 	$resultado = ConectarBaseDatos($sql);
@@ -437,9 +437,24 @@ function modificarActividad(){
 
 }
 
-
 function cargarPalabrasSopaLetras(){
-	
+	$idActividad = $_POST["idActividad"];
+	$palabra = $_POST["palabra"];
+	$descripcionPalabra = $_POST["descripcionPalabra"];
+
+	$sql ="SELECT * FROM actividades WHERE idActividad = $idActividad";
+	$resultado = ConectarBaseDatos($sql);
+	if ($resultado->num_rows > 0){
+		$sql = "INSERT INTO `palabrassopaletras`(`idActividad`, `palabra`, `palabraDescripcion`) VALUES ($idActividad,'$palabra','$descripcionPalabra')";
+		$resultado = ConectarBaseDatos($sql);
+		if ($resultado){
+			return "Actividad creada correctamente.";
+		} else {
+			return "Error en el proceso, intente más tarde.";
+		}
+	} else {
+		return "No existe esta actividad";
+	}
 }
 
 function cambiarCredenciales(){
@@ -461,5 +476,6 @@ if(isset($_POST['tipo']) && !empty($_POST['tipo'])) {
 		case "obtenerTipoActividades": echo obtenerTipoActividades(); break;
 		case "crearActividadDetalle" : echo crearActividad(); break;
 		case "crearActividadUnidades" : echo crearActividadUnidades(); break;
+		case "cargarPalabra" : echo cargarPalabrasSopaLetras(); break;
 	}
 }
