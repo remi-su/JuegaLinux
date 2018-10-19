@@ -22,7 +22,7 @@ $(document).ready(function(){
 			type: 'post',
 			success: function(output) {
 				if (output === "0"){
-					location.href="./controlActividades";
+					location.href="./PanelControl";
 				} else {
 					alert(output);
 				}
@@ -38,7 +38,7 @@ $(document).ready(function(){
 				if (output === "0"){
 					
 				} else {
-					location.href="./controlActividades";
+					location.href="./PanelControl";
 				}
 			}
 		});

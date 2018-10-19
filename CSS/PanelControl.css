@@ -1,0 +1,22 @@
+.nombreUsuario{
+	margin-top: 2px;
+}
+.manager-actions{
+	margin-top: 10px;
+}
+.accion {
+	margin-left: 5px;
+	height: 150px;
+	background-color: white;
+}
+ .body {
+ 	background-color: #d5cdcb;
+ }
+ .presentacion{
+ 	margin-top: 25px;
+ 	margin-bottom: 20px;
+ 	text-align: center;
+ }
+ .card-body{
+ 	height: 200px;
+ }
