@@ -4,8 +4,17 @@
 	<meta charset="utf-8">
 	<title>Registro de Usuarios</title>
 	<script src="./JS/jquery.min.js" type="text/javascript" language="javascript"></script>
+	<script type="text/javascript" src="bootstrap.bundle.js"></script>
+	<link rel="stylesheet" type="text/css" href="./CSS/bootstrap.css">
+	<link rel="stylesheet" href="./CSS/login.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+
+	<!--
 	<form>
 		<div>
 			Usuario : <input type="text" placeholder="Usuario" name="usuario" id="usuario"><br>
@@ -13,6 +22,19 @@
 			<input type="button" name="registrarse" id="registrarse" value="registrarse"><input type="button" name="IniciarSesion" id="iniciar" value="Iniciar Sesión">
 		</div>
 	</form>
+
+	-->
+	<div id="container">
+		<img src="logo.svg"  style="position: relative; margin-top: -31px;" width="auto" height="auto" />
+		<form class="form">
+			<div class="content">
+				<input type="email" name="email" placeholder="E-mail" id="usuario">
+				<input type="password" name="pass" placeholder="Password" id="clave">
+				<input class="btn btn-success" type="button" id="registrarse" value="Registrarse">
+				<input class="btn btn-success" type="button" id="iniciar" value="Iniciar Sesion">
+			</div>
+		</form>
+	</div>
 </body>
 </html>
 
