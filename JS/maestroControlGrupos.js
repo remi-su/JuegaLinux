@@ -12,8 +12,7 @@ $(document).ready(function(){
 			type: 'post',
 			success: function(output) {
 				alert(output);
-				location.href="/index";
-
+				location.href="./index";
 			}
 		});
 	}
@@ -85,7 +84,7 @@ $(document).ready(function(){
 			type: 'post',
 			success: function(output) {
 				if (output === "0"){
-					location.href="/index";
+					location.href="./index";
 				} else {
 					$("#nombreUsuario").append(output);
 				}

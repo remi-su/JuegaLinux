@@ -36,7 +36,7 @@
 				<a class="nav-link"><button class="btn btn-sm btn-light" id="desconectar">Cerrar Sesión</button></a>
 			</li>
 		</ul>
-	</nav>
+	</nav><!-- Fin de navBar -->
 
 	<div class="presentacion">
 		<h1>¡Bienvenido <a id="nombreMaestro"> Nombre Maestro</a>! </h1>
@@ -108,14 +108,14 @@
 <script type="text/javascript">
 
 	document.getElementById("desconectar").onclick = function () { desconectar(); };
+	
 	function desconectar(){
 		$.ajax({ url: './auth.php',
 			data: {tipo: "desconectar"},
 			type: 'post',
 			success: function(output) {
 				alert(output);
-				location.href="/index";
-
+					location.href="./index";
 			}
 		});
 	}
