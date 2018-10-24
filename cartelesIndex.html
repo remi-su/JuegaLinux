@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Juego Carteles</title>
+	<script type="text/javascript" src="./JS/jquery.min.js" language="javascript"></script>
+	<script type="text/javascript" src="./JS/bootstrap.bundle.js"></script>
+	<link rel="stylesheet" type="text/css" href="./CSS/bootstrap.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+	<!-- Inicio de navBar -->
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<!-- Brand/logo -->
+		<a class="navbar-brand" href="#">Maestro Linux</a>
+
+		<!-- Links -->
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" href="./controlGrupos">Grupos</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="./controlAlumnos">Alumnos</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="./controlActividades">Actividades</a>
+			</li>
+			
+		</ul>
+
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link nombreUsuario" id="nombreUsuario"></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link"><button class="btn btn-sm btn-light" id="desconectar">Cerrar Sesión</button></a>
+			</li>
+		</ul>
+	</nav><!-- Fin de navBar -->
+
+	<!--Help-->
+	<img src="./ICONS/round-help-24px.svg" class="float-right" alt="Icono de Ayuda" data-toggle="modal" data-target="#helpModal">
+	<div id="helpModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="helpModalLabel">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">btn</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>body</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div><!--Fin Help-->
+
+	<div class="container"><!--ContainerIMG-->
+
+		<div class="row">
+			<div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+			<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+				<div style="position: absolute; margin-left: 42%; margin-top: 49%; width: 210px; height: 50px; background-color: black; opacity: 0.5;"></div>
+				<img src="./IMG/CARTEL1.jpg" class="img-thumbnail" alt="CARTEL1.jpg">
+			</div>
+			<div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+		</div>
+
+	</div><!--FINContainerIMG-->
+
+</body>
+</html>
