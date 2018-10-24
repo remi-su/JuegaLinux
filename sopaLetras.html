@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Actividad 1: Marcas</title>
+    <script src="./JS/jquery.min.js" type="text/javascript" language="javascript"></script>
+    <script src="./JS/jquery.sopaletras.js" type="text/javascript" language="javascript"></script>
+    <link rel="stylesheet" type="text/css" href="./CSS/bootstrap.css">
+    <script type="text/javascript">
+       $(function(){
+          var sopaoption = {
+            vertical: 'S',
+            onWin: "mostrarTodo"
+        };
+        $("#sopa").SopaLetras(sopaoption);
+        $("#sopa").SopaLetras("enabled");
+    });
+</script>
+<style type="text/css">
+body {
+    background: url(./Recursos/IMG/fondo.png) no-repeat center center fixed; 
+}
+
+.sopa {
+    align-content: center;
+    width: auto;
+}
+
+.dialogoCaja{
+    margin-left: 240px;
+}
+
+.vineta {
+    margin-left: 150px;
+}
+
+.historieta {
+    margin-top: 100px;
+}
+#sopa table
+{
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0px 0px 50px #fff;
+
+}
+
+#sopa table td
+{
+    padding: 5px;
+    border: solid 1px #e8eef4;
+    text-align: center;
+    background-color: white;
+}
+
+#sopa table th
+{
+    padding: 6px 5px;
+    text-align: left;
+    border: solid 1px #e8eef4;
+}
+</style>
+</head>
+<body>
+    <dir class="container">
+        <div class="row"">
+            <div class="col">
+                <div id="sopa">
+                </div>
+            </div>
+            <div class="col historieta">
+                <img src="./Recursos/IMG/dialogo.png" class="dialogoCaja" width="250" height="200"><br>
+                <img src="./Recursos/IMG/pinguinoDetective.png" class="vineta" width="200" height="200">
+            </div>
+        </div>
+        
+        
+    </dir>
+    
+
+
+</body>
+
+</html>

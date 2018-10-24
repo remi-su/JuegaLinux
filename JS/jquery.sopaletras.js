@@ -1,4 +1,4 @@
-﻿
+
 (function ($) {
     Sopa = function ($el, options) {
         $t = $("<table border='1'>");
@@ -21,8 +21,8 @@
         letras[4] = "E";
         letras[5] = "F";
         letras[6] = "G";
-        letras[7] = "H";
-        letras[8] = "I";
+        letras[7] = "F";
+        letras[8] = "H";
         letras[9] = "J";
         letras[10] = "K";
         letras[11] = "L";
@@ -91,10 +91,10 @@
 
                 for (var i = 0; i < defaults.complejo + 1; i++) {
                     var pos = Math.floor((Math.random() * (defaults.complejo + 3)) - 1);
-                    var letraelegidapos = Math.floor(Math.random() * 14);
+                    var letraelegidapos = Math.floor(Math.random() * 27);
 
                     if (pos == -1)
-                    { pos = 0; }
+                        { pos = 0; }
 
                     if (comienzoy == -1) {
                         comienzoy = 0;
@@ -112,7 +112,7 @@
                             if (contadorletras < defaults.palabras[contadorpalabras].name.length) {
                                 $("<td>").attr("nocruzar", "S").html(defaults.palabras[contadorpalabras].name.charAt(contadorletras)).appendTo($header).attr("pos", i.toString() + ";" + j.toString()).css("cursor", "pointer").hover(function () {
                                     if (activarhover) {
-                                        $(this).css("color", "red")
+                                        $(this).css("color", "red");
                                     }
                                 }
                                 ).click(function () {
@@ -125,7 +125,8 @@
                             else {
                                 $("<td>").attr("nocruzar", "F").html(letras[letraelegidapos]).appendTo($header).attr("pos", i.toString() + ";" + j.toString()).css("cursor", "pointer").hover(function () {
                                     if (activarhover) {
-                                        $(this).css("color", "red")
+                                        $(this).css("color", "red");
+                                        $(this).addClass("seleccionado");
                                     }
                                 }
                                 ).click(function () {
@@ -138,23 +139,25 @@
                         else {
                             $("<td>").attr("nocruzar", "F").html(letras[letraelegidapos]).appendTo($header).attr("pos", i.toString() + ";" + j.toString()).css("cursor", "pointer").hover(function () {
                                 if (activarhover) {
-                                    $(this).css("color", "red")
+                                    $(this).css("color", "red");
+                                    $(this).addClass("seleccionado");
                                 }
                             }
-                                ).click(function () {
-                                    $g.click(this);
-                                }).addClass("noes");
+                            ).click(function () {
+                                $g.click(this);
+                            }).addClass("noes");
                         }
                     }
                     else {
                         $("<td>").attr("nocruzar", "F").html(letras[letraelegidapos]).appendTo($header).attr("pos", i.toString() + ";" + j.toString()).css("cursor", "pointer").hover(function () {
                             if (activarhover) {
-                                $(this).css("color", "red")
+                                $(this).css("color", "red");
+                                $(this).addClass("seleccionado");
                             }
                         }
-                                ).click(function () {
-                                    $g.click(this);
-                                }).addClass("noes");
+                        ).click(function () {
+                            $g.click(this);
+                        }).addClass("noes");
                     }
                 }
 
@@ -173,9 +176,9 @@
             var total = 0;
 
             if (posy == -1)
-            { posy = 0; }
+                { posy = 0; }
             if (posx == -1)
-            { posx = 0; }
+                { posx = 0; }
 
             var caminadorvertical = contadorpalabras + 1;
 
@@ -187,7 +190,7 @@
                 while (true) {
                     cantidadvueltas++;
                     if (cantidadvueltas == 100)
-                    { return; }
+                        { return; }
                     if ((posy + defaults.palabras[v].name.length) < defaults.complejo) {
                         posyv = posy;
                         for (var i = 0; i < defaults.palabras[v].name.length; i++) {
@@ -208,9 +211,9 @@
                         posy = Math.floor((Math.random() * (defaults.complejo + 2)) - 1);
                         posx = Math.floor((Math.random() * (defaults.complejo + 2)) - 1);
                         if (posy == -1)
-                        { posy = 0; }
+                            { posy = 0; }
                         if (posx == -1)
-                        { posx = 0; }
+                            { posx = 0; }
                     }
                     else {
                         break;
@@ -234,14 +237,14 @@
         var posiciony1 = 0;
         this.click = function (td) {
             if (!dejapasar)
-            { return; }
+                { return; }
             var $g = this;
             cantidadclicks += 1;
             $(td).css("color", "red");
             if (cantidadclicks == 1) {
                 posicionx = $(td).attr("pos").split(";")[0];
                 posiciony = $(td).attr("pos").split(";")[1];
-                activarhover = false; //hay que cambiar aca
+                activarhover = true; //hay que cambiar aca
             }
             else {
                 posicionx1 = $(td).attr("pos").split(";")[0];
@@ -254,9 +257,13 @@
                 var i = 1;
                 var total = posicionx1 - posicionx;
 
+
                 if (total < 0) {
-                    $(td).css("color", "");
-                    $("td[pos='" + posicionx.toString() + ";" + posiciony.toString() + "']").css("color", "");
+                    var $tdlocal = $("td[pos='" + posicionx.toString() + ";" + posiciony.toString() + "']");
+                    if (!$tdlocal.hasClass("noborrar")) {
+                        //$(td).css("color", "");
+                        $("td[pos='" + posicionx.toString() + ";" + posiciony.toString() + "']").css("color", "");
+                    }
                     $(".noes").css("color", "");
                     return;
                 }
@@ -264,8 +271,13 @@
                 if (posiciony != posiciony1) {
                     total = posiciony1 - posiciony
                     if (total < 0) {
-                        $(td).css("color", "");
-                        $("td[pos='" + posicionx.toString() + ";" + posiciony1.toString() + "']").css("color", "");
+                        var $tdlocal = $("td[pos='" + posicionx.toString() + ";" + posiciony.toString() + "']");
+                        if (!$tdlocal.hasClass("noborrar")){
+                            $("td[pos='" + posicionx.toString() + ";" + posiciony1.toString() + "']").css("color", "");
+                        }
+                        //$(td).css("color", "");
+
+                        
                         $(".noes").css("color", "");
                         return;
                     }
@@ -311,10 +323,13 @@
                     if (selecion == this.name) {
                         existe = true;
                         var verificar = false;
+                        $("td[class='']").addClass("noborrar");
+                        $("td[class='noborrar']").css("background-color", "black");
                         if (palabrasencontradas == 0) {
                             palabrasencontradas[0] = this.name;
                             aciertos += 1;
                         }
+
                         else {
                             for (var i = 0; i < palabrasencontradas.length; i++) {
                                 if (palabrasencontradas[i] == this.name) {
@@ -328,15 +343,22 @@
                         }
 
                         alert("Encontraste la palabra: " + selecion);
+                        $(".seleccionado").css("color", "");
+                        var elementos = document.getElementsByClassName("seleccionado");
+                        for (var i = 0; i < elementos.length; i++) {
+                            elementos[i].classList.remove("seleccionado");
+                        }
+                        /*
                         if (!verificar) {
                             miradorpalabras += selecion + ", ";
                             $g.cantidadpalabras();
                         }
-                        $("td[class='']").addClass("noborrar");
+                        
                         if (aciertos == defaults.palabras.length) {
                             alert("Felicitaciones!!!. Has encontrado todas las palabras.");
                             $g.onWin();
                         }
+                        */
                     }
                 });
 
