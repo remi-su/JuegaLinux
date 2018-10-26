@@ -1,0 +1,50 @@
+body {
+    background: url(../Recursos/IMG/fondo.png) no-repeat center center fixed; 
+}
+
+.sopa {
+    align-content: center;
+    width: auto;
+}
+
+.dialogoCaja{
+    margin-left: 240px;
+    background-image: url("../Recursos/IMG/Dialogo.png");
+    width: auto;
+    height: auto;
+}
+
+.listaPalabras {
+    background-image: url("../Recursos/IMG/HojaNotas.png");
+}
+
+.vineta {
+    margin-left: 150px;
+}
+
+.historieta {
+    margin-top: 100px;
+}
+#sopa table
+{
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0px 0px 50px #fff;
+
+}
+
+#sopa table td
+{
+    padding: 5px;
+    border: solid 1px #e8eef4;
+    text-align: center;
+    background-color: white;
+}
+
+#sopa table th
+{
+    padding: 6px 5px;
+    text-align: left;
+    border: solid 1px #e8eef4;
+}
