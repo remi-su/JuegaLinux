@@ -177,7 +177,7 @@ $(document).ready(function(){
 				}
 			}
 		});
-	}
+	} 
 	$("#numeroPalabras").change(function(){
 		crearInputPalabras();
 	});
