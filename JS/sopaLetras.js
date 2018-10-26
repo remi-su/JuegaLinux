@@ -321,6 +321,7 @@
 
                 $.each(defaults.palabras, function () {
                     if (selecion == this.name) {
+
                         existe = true;
                         var verificar = false;
                         $("td[class='']").addClass("noborrar");
@@ -342,12 +343,15 @@
                             }
                         }
 
-                        alert("Encontraste la palabra: " + selecion);
+                        //alert("Encontraste la palabra: " + selecion);
                         $(".seleccionado").css("color", "");
                         var elementos = document.getElementsByClassName("seleccionado");
                         for (var i = 0; i < elementos.length; i++) {
                             elementos[i].classList.remove("seleccionado");
                         }
+
+                        $("#texto").empty();
+                        $("#texto").append("Has encontrado la palabra " + selecion);
                         /*
                         if (!verificar) {
                             miradorpalabras += selecion + ", ";
