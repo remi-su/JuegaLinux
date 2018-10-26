@@ -47,8 +47,13 @@ body {
 }
 
 .centeredText {
+    margin-left: 120px;
     position: absolute;
     top: 25%;
     left:70%;
     transform: translate(-50%, -50%);
+}
+
+.listaPalabras{
+    margin-top: 250px;
 }
