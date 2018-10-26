@@ -39,35 +39,116 @@
 			</li>
 		</ul>
 	</nav><!-- Fin de navBar -->
+	<br>
 
-	<h1 id="nombreUsuario"></h1>
-	<input type="button" name="desconectar" id="desconectar" value="Cerrar Sesión">
-	<hr>
-	<p>Crear Grupo</p>
-	Grado : <input type="text" name="grado" id="grado"> <br>
-	Grupo : <input type="text" name="grupo" id="grupo"> <br>
+	<div class="container"><!--Inicio de Formulario-->
+		<h3>Crear grupo</h3>
+		<div class="input-group mb-3">
+			<input type="text"
+			class="form-control"
+			placeholder="Grado"
+			aria-describedby="basic-addon1"
+			name="grado"
+			id="grado">
+		</div>
+		<div class="input-group mb-3">
+			<input type="text"
+			class="form-control"
+			placeholder="Grupo"
+			aria-describedby="basic-addon1"
+			name="grupo"
+			id="grupo" >
+		</div>
+		<div class="input-group mb-3">
+			<input type="button"
+			class="btn btn-secondary"
+			name="crearGrupo"
+			id="crearGrupo"
+			value="Crear">
+		</div>
+
+		<hr>
+
+		<h3>Modificar Grupos</h3>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<label class="input-group-text" for="listaArea">Grado y grupo a modificar: </label>
+			</div>
+			<select class="custom-select" id="listaGrupos"></select>
+		</div>
+
+
+		<h5>Nuevos valores: </h5>
+		<div class="input-group mb-3">
+			<input type="text"
+			class="form-control"
+			placeholder="Grado"
+			aria-describedby="basic-addon1"
+			name="grado"
+			id="gradoNuevo">
+		</div>
+		<div class="input-group mb-3">
+			<input type="text"
+			class="form-control"
+			placeholder="Grupo"
+			aria-describedby="basic-addon1"
+			name="grupo"
+			id="grupoNuevo">
+		</div>
+		<div class="input-group mb-3">
+			<input type="button"
+			class="btn btn-secondary"
+			name="crearGrupo"
+			id="modificarGrupo"
+			value="Modificar">
+		</div>
+
+		<hr>
+
+		<h3>Eliminar grupos</h3>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<label class="input-group-text" for="listaAEliminarGrupos">Grado y grupo a eliminar: </label>
+			</div>
+			<select class="custom-select" id="listaAEliminarGrupos"></select>
+		</div>
+		<div class="input-group mb-3">
+			<input type="button"
+			class="btn btn-secondary"
+			name="eliminarGrupo"
+			id="eliminarGrupo"
+			value="Eliminar">
+		</div>
+	</div> <!--Fin de Formulario-->
+
+	<!--<p>Crear Grupo</p>
+	Grado : <input type="text" name="grado" id="grado"><br>
+	Grupo : <input type="text" name="grupo" id="grupo"><br>
 	<input type="button" name="crearGrupo" value="Crear Grupo" id="crearGrupo">
 	<hr>
 	<p>Modificar Grupos</p>
+
 	Seleccione el grado y grupo a modificar: 
-	<select id="listaGrupos">
-		
-	</select>
+	<select id="listaGrupos"></select>
+
 	<br>
 	Ingrese los nuevos valores: <br>
+
 	Grado : <input type="text" name="grado" id="gradoNuevo"> <br>
 	Grupo : <input type="text" name="grupo" id="grupoNuevo"> <br>
 	<input type="button" name="crearGrupo" value="Modificar Grupo" id="modificarGrupo">
 	<hr>
-	<hr>
 	<p>Eliminar Grupos</p>
 	Seleccione el grado y grupo a eliminar: 
 	<select id="listaAEliminarGrupos">
-		
+
 	</select>
 	<br>
 	<input type="button" name="eliminarGrupo" value="Eliminar Grupo" id="eliminarGrupo">
-	<hr>
+	
+	<smt/>-->
+	
+
 </body>
 </html>
 
