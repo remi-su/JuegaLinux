@@ -1,9 +1,9 @@
 
 (function ($) {
-    Sopa = function ($el, options) {
+    Sopa = function ($el, options, configuracion) {
         $t = $("<table border='1'>");
 
-        var defaults = { palabras: [{ name: 'CABAÑA' }, {name: 'SHARLIE'}, {name: 'CHINO'} , { name: 'PERRO' }, { name: 'CABALLO' }, { name: 'GATO' }, { name: 'TELEVISORES'}], complejo: 15, vertical: 'S', onWin: "" };
+        var defaults = configuracion;
         var aciertos = 0;
         var activarhover = false;
         var miradorpalabras = "";
@@ -321,6 +321,7 @@
 
                 $.each(defaults.palabras, function () {
                     if (selecion == this.name) {
+
                         existe = true;
                         var verificar = false;
                         $("td[class='']").addClass("noborrar");
@@ -342,12 +343,15 @@
                             }
                         }
 
-                        alert("Encontraste la palabra: " + selecion);
+                        //alert("Encontraste la palabra: " + selecion);
                         $(".seleccionado").css("color", "");
                         var elementos = document.getElementsByClassName("seleccionado");
                         for (var i = 0; i < elementos.length; i++) {
                             elementos[i].classList.remove("seleccionado");
                         }
+
+                        $("#texto").empty();
+                        $("#texto").append("Has encontrado la palabra " + selecion);
                         /*
                         if (!verificar) {
                             miradorpalabras += selecion + ", ";
@@ -416,13 +420,40 @@
 
         this.init();
     };
+
+
     var sopas = null;
     $.fn.SopaLetras = function (options) {
-        if (options.toString() == "enabled") {
-            sopas.enabled();
-            return;
-        }
-        sopas = new Sopa(this, options);
-        return sopas;
+        var esto = this;
+        
+        var urlCompleto = window.location + "";
+
+        var idActividad = urlCompleto.split("=")[1];
+
+        $.ajax({ url: './AlumnoController.php',
+            data: {tipo: "obtenerPalabrasActividad", idActividad: idActividad},
+            type: 'post',
+            success: function(output) {
+                if (output != "0"){
+                    var palabras = output.split(";");
+
+                    var arregloPalabras = [];
+                    for (var i = 0; i < palabras.length - 1; i++) {
+                        var miObjeto = new Object();
+                        miObjeto.name = palabras[i];
+                        arregloPalabras[i] = miObjeto;
+                    }
+
+                    var tempo = {palabras : [], complejo: 15, vertical: 'S', onWin: "" };
+                    tempo.palabras = arregloPalabras;
+                    sopas = new Sopa(esto, options, tempo);
+                    sopas.enabled();
+                    
+                }
+            }
+        });
+        
     };
+
+
 })(jQuery);
