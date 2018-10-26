@@ -325,7 +325,6 @@
                         existe = true;
                         var verificar = false;
                         $("td[class='']").addClass("noborrar");
-                        $("td[class='noborrar']").css("background-color", "black");
                         if (palabrasencontradas == 0) {
                             palabrasencontradas[0] = this.name;
                             aciertos += 1;
