@@ -17,10 +17,9 @@
 .main-container{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
-    position: fixed;
 }
+
+
 
 .row{
   z-index: 8;
@@ -42,6 +41,12 @@
     height: 40vh !important;
 
 }
+
+.mynav{
+ position: relative;
+ top: 0;
+ z-index: 999;
+ }
 
 /* custom  walking-penguin */
 .walking-penguin {
@@ -302,8 +307,6 @@ transform: translate(300px, 0px);
 .ground{
     z-index: -2;
     position: absolute;
-    right: -476px;
-    background: green;
     height: 1000px;
     width: 2000px;
 
@@ -1061,8 +1064,14 @@ animation-fill-mode: forwards;
   justify-content: space-evenly;
   display: flex;
 }
+
+*{
+  box-sizing: inherit !important;
+}
+
+
 .control-panel{
-  
+  box-sizing: inherit !important;
   display: flex;
   flex-direction: column;
   background: rgba(100,100,100, 0.5);
@@ -1090,6 +1099,7 @@ animation-fill-mode: forwards;
     width: 40px;
     flex-grow: 1;
     margin: 10px;
+    
     
 }
 
@@ -1121,4 +1131,10 @@ animation-fill-mode: forwards;
 
 .button-1{
 
+}
+
+
+.level-card{
+  margin: 15px !important;
+  flex-grow: 2;
 }
