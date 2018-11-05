@@ -336,7 +336,7 @@
                         existe = true;
                         var verificar = false;
                         $("td[class='']").addClass("noborrar");
-                        if (palabrasencontradas == 0) {
+                        if (palabrasencontradas.length == 0) {
                             palabrasencontradas[0] = this.name;
                             aciertos += 1;
                         }
@@ -348,7 +348,7 @@
                                 }
                             }
                             if (!verificar) {
-                                palabrasencontradas[palabrasencontradas.length] = this.name;
+                                palabrasencontradas.push(this.name);
                                 aciertos += 1;
                             }
                         }
@@ -362,17 +362,19 @@
 
                         $("#texto").empty();
                         $("#texto").append("Has encontrado la palabra " + selecion);
+                        $("#" + selecion).empty();
+                        $("#" + selecion).append("<strike>" + selecion + "</strike>");
                         /*
                         if (!verificar) {
                             miradorpalabras += selecion + ", ";
                             $g.cantidadpalabras();
                         }
-                        
+                        */
                         if (aciertos == defaults.palabras.length) {
                             alert("Felicitaciones!!!. Has encontrado todas las palabras.");
-                            $g.onWin();
+                            //$g.onWin();
                         }
-                        */
+                        
                     }
                 });
 
@@ -436,7 +438,6 @@
         this.init();
     };
 
-
     var sopas = null;
     $.fn.SopaLetras = function (options) {
         var esto = this;
@@ -451,6 +452,15 @@
             success: function(output) {
                 if (output != "0"){
                     var palabras = output.split(";");
+                    var htmlTabla = "<table> <tr><td> Palabras a encontrar: </td></tr>";
+
+                    for (var i = 0; i < palabras.length; i++) {
+                        htmlTabla +="<tr><td id=\""+ palabras[i] +"\">" + palabras[i] + "</td></tr>";
+                    }
+
+                    htmlTabla += "</table>";
+                    $("#tablaPalabras").empty();
+                    $("#tablaPalabras").append(htmlTabla);
 
                     var arregloPalabras = [];
                     for (var i = 0; i < palabras.length - 1; i++) {
@@ -470,5 +480,31 @@
         
     };
 
+    function desconectar(){
+        $.ajax({ url: './auth.php',
+            data: {tipo: "desconectar"},
+            type: 'post',
+            success: function(output) {
+                alert(output);
+                location.href="./index";
+            }
+        });
+    }
+    function verificarInicioSesion(){
+        $.ajax({ url: './auth.php',
+            data: {tipo: "verificar"},
+            type: 'post',
+            success: function(output) {
+                if (output === "0"){
+                    location.href="./index";
+                } else {
+                    $("#nombreUsuario").append(output);
+                }
+            }
+        });
+    }
+
+    verificarInicioSesion();
+    document.getElementById("desconectar").onclick = function () { desconectar(); };
 
 })(jQuery);
