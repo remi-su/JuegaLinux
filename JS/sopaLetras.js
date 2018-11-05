@@ -126,7 +126,9 @@
                                 $("<td>").attr("nocruzar", "F").html(letras[letraelegidapos]).appendTo($header).attr("pos", i.toString() + ";" + j.toString()).css("cursor", "pointer").hover(function () {
                                     if (activarhover) {
                                         $(this).css("color", "red");
-                                        $(this).addClass("seleccionado");
+                                        if ($(this).attr("nocruzar") != "S"){
+                                            $(this).addClass("seleccionado");
+                                        }
                                     }
                                 }
                                 ).click(function () {
@@ -137,27 +139,36 @@
 
                         }
                         else {
+
                             $("<td>").attr("nocruzar", "F").html(letras[letraelegidapos]).appendTo($header).attr("pos", i.toString() + ";" + j.toString()).css("cursor", "pointer").hover(function () {
                                 if (activarhover) {
                                     $(this).css("color", "red");
-                                    $(this).addClass("seleccionado");
+                                    if ($(this).attr("nocruzar") != "S"){
+                                        $(this).addClass("seleccionado");
+                                    }
                                 }
                             }
                             ).click(function () {
                                 $g.click(this);
                             }).addClass("noes");
+
                         }
                     }
                     else {
+
                         $("<td>").attr("nocruzar", "F").html(letras[letraelegidapos]).appendTo($header).attr("pos", i.toString() + ";" + j.toString()).css("cursor", "pointer").hover(function () {
                             if (activarhover) {
                                 $(this).css("color", "red");
-                                $(this).addClass("seleccionado");
+                                if ($(this).attr("nocruzar") != "S"){
+                                    $(this).addClass("seleccionado");
+                                }
+                                
                             }
                         }
                         ).click(function () {
                             $g.click(this);
                         }).addClass("noes");
+
                     }
                 }
 
@@ -321,7 +332,7 @@
 
                 $.each(defaults.palabras, function () {
                     if (selecion == this.name) {
-
+                        //console.log(selecion);
                         existe = true;
                         var verificar = false;
                         $("td[class='']").addClass("noborrar");
@@ -366,6 +377,11 @@
                 });
 
                 if (!existe) {
+                    var elementos = document.getElementsByClassName("seleccionado");
+                    for (var i = 0; i < elementos.length; i++) {
+                        elementos[i].classList.remove("seleccionado");
+                    }
+
                     miserrores += 1;
                     y = posiciony;
                     x = posicionx;
