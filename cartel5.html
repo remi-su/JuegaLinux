@@ -76,19 +76,19 @@
 			<div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
 			<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
 				<div class="cartel">
-					<div id="respuesta"
+  					
+  					<div class="respuesta"
 					style="position: absolute;
-					margin-left: 42%;
-					margin-top: 49%;
-					width: 210px;
-					height: 50px;
-					background-color: black; opacity: 0.5;
-					"></div>
-					<img src="./IMG/CARTEL1.jpg" class="img-thumbnail" alt="CARTEL1.jpg">
+					margin-left: 11%;
+					margin-top: 35%;
+					width: 30px;
+					height: 18px;
+					background-color: black; opacity: 0.5;"></div>
+
+					<img src="./IMG/CARTEL5.jpg" class="img-thumbnail" alt="CARTEL1.jpg">
 				</div>
 			</div>
-			<div class="col-xs-0 col-sm-0 col-md-1 col-lg-1">
-			</div>
+			<div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
 		</div>
 	</div><!--FINContainerIMG-->
 
@@ -97,11 +97,21 @@
 
 <script type="text/javascript">
 
+/*$('body').click(function(evt){    
+	if(!$(evt.target).is('#nav')){
+		if($(evt.target).is('#respuesta') ) {
+			alert(":D Felicitaciones!");
+		} else {
+			alert(":C oh raios!");
+		}
+	}
+});*/
+
 
 $('body').click(function(evt){
 
 	if(evt.target.id == "cartel" || $(evt.target).closest('.cartel').length){
-		if(evt.target.id == "respuesta"){
+		if($(evt.target).attr("class") == "respuesta"){
 			alert(":D Felicitaciones!");
 		} else {
 			alert(":C oh raios!");
