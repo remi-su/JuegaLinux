@@ -34,7 +34,7 @@ function Fish(id) {
         return y;
     };
 
-    this.jump = function(){
+   /* this.jump = function(){
 
         var interval = setInterval(frame, 50);
         var num= id;
@@ -52,7 +52,7 @@ function Fish(id) {
         }
         return num;
 
-}
+}*/
 
 }
 
