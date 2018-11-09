@@ -446,39 +446,55 @@
 
         var idActividad = urlCompleto.split("=")[1];
 
-        $.ajax({ url: './AlumnoController.php',
-            data: {tipo: "obtenerPalabrasActividad", idActividad: idActividad},
-            type: 'post',
-            success: function(output) {
-                if (output != "0"){
-                    var palabras = output.split(";");
-                    var htmlTabla = "<table> <tr><td> Palabras a encontrar: </td></tr>";
+        var palabras = obtenerPalabras(idActividad);
+        var htmlTabla = "<table> <tr><td> Palabras a encontrar: </td></tr>";
 
-                    for (var i = 0; i < palabras.length; i++) {
-                        htmlTabla +="<tr><td id=\""+ palabras[i] +"\">" + palabras[i] + "</td></tr>";
-                    }
+        for (var i = 0; i < palabras.length; i++) {
+            htmlTabla +="<tr><td id=\""+ palabras[i] +"\">" + palabras[i] + "</td></tr>";
+        }
 
-                    htmlTabla += "</table>";
-                    $("#tablaPalabras").empty();
-                    $("#tablaPalabras").append(htmlTabla);
+        htmlTabla += "</table>";
+        $("#tablaPalabras").empty();
+        $("#tablaPalabras").append(htmlTabla);
 
-                    var arregloPalabras = [];
-                    for (var i = 0; i < palabras.length - 1; i++) {
-                        var miObjeto = new Object();
-                        miObjeto.name = palabras[i];
-                        arregloPalabras[i] = miObjeto;
-                    }
+        var arregloPalabras = [];
+        for (var i = 0; i < palabras.length - 1; i++) {
+            var miObjeto = new Object();
+            miObjeto.name = palabras[i];
+            arregloPalabras[i] = miObjeto;
+        }
 
-                    var tempo = {palabras : [], complejo: 15, vertical: 'S', onWin: "" };
-                    tempo.palabras = arregloPalabras;
-                    sopas = new Sopa(esto, options, tempo);
-                    sopas.enabled();
-                    
-                }
-            }
-        });
+        var tempo = {palabras : [], complejo: 15, vertical: 'S', onWin: "" };
+        tempo.palabras = arregloPalabras;
+        sopas = new Sopa(esto, options, tempo);
+        sopas.enabled();
+
         
     };
+
+    function obtenerPalabras(idActividad){
+
+        switch (idActividad){
+            case "1":
+            var listaPalabras = ["UNO","DOS","TRES","CUATRO", "CINCO"];
+            return listaPalabras;
+            case "2": 
+            var listaPalabras = ["ROSA","AMARILLO","AZUL","VERDE","BLANCO"];
+            return listaPalabras;
+            case "3": 
+            var listaPalabras = ["PANTALÓN","VESTIDO","BLUSA","SHORT","CAMISA"];
+            return listaPalabras;
+            case "4": 
+            var listaPalabras = ["MELÓN","SANDÍA","NARANJA","FRESA","PIÑA"];
+            return listaPalabras;
+            case "5": 
+            var listaPalabras = ["LAPÍZ","COLORES","LIBRETA","MOCHILA","REGLA"];
+            return listaPalabras;
+            case "6": 
+            var listaPalabras = ["MOUSE","TECLADO","MONITOR","USB","IMPRESORA"];
+            return listaPalabras;
+        }
+    }
 
     function desconectar(){
         $.ajax({ url: './auth.php',
