@@ -45,38 +45,37 @@ function render_php(){
 	*/
 	$data = array();
 	switch ($id) {
-		case 1: $data['num_fish'] =1;
-				$data['answer_a'] = 1;
-				$data['answer_b'] = 5;
-				$data['answer_c'] = 9;
+		case 1: 
+			$data = generate_level(1,1,5,9);
 			break;
 		case 2:
-			$data['num_fish'] =2;
-			$data['answer_a'] = 2;
-			$data['answer_b'] = 5;
-			$data['answer_c'] = 9;
+			$data = generate_level(2,2,5,9);
 			break;
 		case 3:
-			$data['num_fish'] =3;
-			$data['answer_a'] = 3;
-			$data['answer_b'] = 5;
-			$data['answer_c'] = 9;
+			$data = generate_level(3,3,5,9);
 			break;
 		case 4:
-			$data['num_fish'] =4;
-			$data['answer_a'] = 4;
-			$data['answer_b'] = 5;
-			$data['answer_c'] = 9;
+			$data = generate_level(400,4,5,9);
 			break;
 		default: 
+			
 
 	}
     ob_start();
     include('../index.php');
-    $var=ob_get_contents(); 
-    ob_end_clean();
-    return $var;
+    
 }
+
+
+function generate_level(num_fish, answer_a, answer_b, answer_c){
+	$data = array();
+	$data['num_fish'] =num_fish;
+	$data['answer_a'] = answer_a;
+	$data['answer_b'] = answer_b;
+	$data['answer_c'] = answer_c;
+	return $data;
+}
+
 $page = render_php();
-header('location: ../index.php');
+
 ?>
