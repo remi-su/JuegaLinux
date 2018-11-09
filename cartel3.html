@@ -70,26 +70,48 @@
 		</div>
 	</div><!--Fin Help-->
 
-		<img src ="Recursos/IMG/fondo.png" width="1900" height="800" alt="LevelMap"usemap="#levelMap" z-index="-1">
-		<map name="levelMap">
-			<area shape="rect" coords="0,0,100,100" href="cartel1.html" alt="cartel1">
-			<area shape="rect" coords="100,100,220,220" href="cartel2.html" alt="cartel2">
-			<area shape="rect" coords="220,220,340,340" href="cartel3.html" alt="cartel3">
-			<area shape="rect" coords="340,340,460,460" href="cartel4.html" alt="cartel4">
-			<area shape="rect" coords="460,460,580,580" href="cartel5.html" alt="cartel5">
-		</map>
+	<div class="container"><!--ContainerIMG-->
 
+		<div class="row">
+			<div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+			<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+				<div class="cartel">
+					
+					<div class="respuesta"
+					style="position: absolute;
+					margin-left: 30%;
+					margin-top: 76%;
+					width: 70px;
+					height: 40px;
+					background-color: black; opacity: 0.5;"></div>
+				
+				<img src="./IMG/CARTEL3.jpg" class="img-thumbnail" alt="CARTEL1.jpg">
+			</div>
+		</div>
+		<div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+	</div>
+</div><!--FINContainerIMG-->
 
 </body>
 </html>
 
 <script type="text/javascript">
 
+/*$('body').click(function(evt){    
+	if(!$(evt.target).is('#nav')){
+		if($(evt.target).is('#respuesta') ) {
+			alert(":D Felicitaciones!");
+		} else {
+			alert(":C oh raios!");
+		}
+	}
+});*/
+
 
 $('body').click(function(evt){
 
 	if(evt.target.id == "cartel" || $(evt.target).closest('.cartel').length){
-		if(evt.target.id == "respuesta"){
+		if($(evt.target).attr("class") == "respuesta"){
 			alert(":D Felicitaciones!");
 		} else {
 			alert(":C oh raios!");

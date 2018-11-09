@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +8,14 @@
     <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
     <title>Document</title>
 </head>
-<body class="body">
+<body id="body" class="body">
+
 
 
     <!-- Inicio de navBar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark mynav">
         <!-- Brand/logo -->
-        <a class="navbar-brand" href="#">Maestro Linux</a>
+        <a class="navbar-brand" href="#">Level <?php echo intval($_POST['level']); ?> </a>
 
         <!-- Links -->
         <ul class="navbar-nav">
@@ -127,9 +125,6 @@
                         </div>
                 </div>
             </div>
-
-
-
                 <div class="ground">
 
                 </div >
@@ -160,7 +155,7 @@
             </div>
 
             <div id="panel-container">
-
+                
 
         </div> 
         </div>
@@ -198,7 +193,7 @@ function loadLevelData($id){
 <?php
 
 
-    $id = intval($_POST['level']);
+
     /*
     switch($id){
         case 1: echo 'const num_fish=1; const answer_a = 1; const answer_b = 5; const answer_c = 9;';
@@ -210,48 +205,117 @@ function loadLevelData($id){
         case 4:  echo 'const num_fish=4;const answer_a = 4;const answer_b = 5;const answer_c = 9;';
     }
     */
+    $level = intval($_POST['level']);
     $data = array();
-    switch ($id) {
-        case 1: $data['num_fish'] =1;
-                $data['answer_a'] = 1;
-                $data['answer_b'] = 5;
-                $data['answer_c'] = 9;
+    switch ($level) {
+        case 1: 
+            $data = generate_level(1);
             break;
         case 2:
-            $data['num_fish'] =2;
-            $data['answer_a'] = 2;
-            $data['answer_b'] = 5;
-            $data['answer_c'] = 9;
+            $data = generate_level(2);
             break;
         case 3:
-            $data['num_fish'] =3;
-            $data['answer_a'] = 3;
-            $data['answer_b'] = 5;
-            $data['answer_c'] = 9;
+            $data = generate_level(3);
             break;
         case 4:
-            $data['num_fish'] =4;
-            $data['answer_a'] = 4;
-            $data['answer_b'] = 5;
-            $data['answer_c'] = 9;
+            $data = generate_level(4);
             break;
         default: 
+    }
+   
+function generate_level($level){
+    $data = array();
+    switch ($level) {
+        case 1: 
+            $data['phase_1'] = generate_phase(1,0,1,1,9);
+            $data['phase_2'] = generate_phase(2,0,2,2,9);
+            $data['phase_3'] = generate_phase(3,0,3,3,9);
+            $data['phase_4'] = generate_phase(4,0,4,4,9);
+            break;
+        case 2:
+            $data['phase_1'] = generate_phase(1,0,1,1,9);
+            $data['phase_2'] = generate_phase(2,0,2,2,9);
+            $data['phase_3'] = generate_phase(3,0,3,3,9);
+            $data['phase_4'] = generate_phase(4,0,4,4,9);
+            break;
+        case 3:
+            $data['phase_1'] = generate_phase(1,0,1,1,9);
+            $data['phase_2'] = generate_phase(2,0,2,2,9);
+            $data['phase_3'] = generate_phase(3,0,3,3,9);
+            $data['phase_4'] = generate_phase(4,0,4,4,9);
+            break;
+        case 4:
+            $data['phase_1'] = generate_phase(1,0,1,1,9);
+            $data['phase_2'] = generate_phase(2,0,2,2,9);
+            $data['phase_3'] = generate_phase(3,0,3,3,9);
+            $data['phase_4'] = generate_phase(4,0,4,4,9);
+            break;
+        default: 
+    }
+    
 
-    }    
+    return $data;
+}
 
 
-?>
-const num_fish=  <?php echo $data['num_fish']; ?>;
-
-          const answer_a = <?php echo $data['answer_a']; ?>;
-       const answer_b = <?php echo $data['answer_b']; ?>;
-const answer_c = <?php echo $data['answer_c']; ?>;
-
-        
+function generate_phase($num_fish,$num_bags, $answer_a, $answer_b, $answer_c){
+    $data = array();
+    $data['num_fish'] = $num_fish;
+    $data['num_bags'] = $num_bags;
+    $data['answer_a'] = $answer_a;
+    $data['answer_b'] = $answer_b;
+    $data['answer_c'] = $answer_c;
+    return $data;
+}?>
+    var elements;
+    var num_fish;
+    var num_bags;
+    var answer_a;
+    var answer_b;
+    var answer_c;
+    var actual_phase = 0;
     const time_before_escape = 10000;// en ms
+    
     var fish_still_there= true;
-        </script>
-        <script src="js/movement.js"></script>   
-        <script src="js/fish.js"></script>   
+
+    function change_fase(phase){
+        actual_phase++;
+        switch(actual_phase){
+            case 1:
+                num_fish =  <?php echo $data['phase_1']['num_fish']; ?>;
+                num_bags =  <?php echo $data['phase_1']['num_bags']; ?>;
+                answer_a = <?php echo $data['phase_1']['answer_a']; ?>;
+                answer_b = <?php echo $data['phase_1']['answer_b']; ?>;
+                answer_c = <?php echo $data['phase_1']['answer_c']; ?>;
+                break;
+            case 2:
+                num_fish =  <?php echo $data['phase_2']['num_fish']; ?>;
+                num_bags =  <?php echo $data['phase_2']['num_bags']; ?>;
+                answer_a = <?php echo $data['phase_2']['answer_a']; ?>;
+                answer_b = <?php echo $data['phase_2']['answer_b']; ?>;
+                answer_c = <?php echo $data['phase_2']['answer_c']; ?>;
+                break;
+            case 3:
+                num_fish =  <?php echo $data['phase_3']['num_fish']; ?>;
+                num_bags =  <?php echo $data['phase_3']['num_bags']; ?>;
+                answer_a = <?php echo $data['phase_3']['answer_a']; ?>;
+                answer_b = <?php echo $data['phase_3']['answer_b']; ?>;
+                answer_c = <?php echo $data['phase_3']['answer_c']; ?>;
+                break;
+            case 4:
+                num_fish =  <?php echo $data['phase_4']['num_fish']; ?>;
+                num_bags =  <?php echo $data['phase_4']['num_bags']; ?>;
+                answer_a = <?php echo $data['phase_4']['answer_a']; ?>;
+                answer_b = <?php echo $data['phase_4']['answer_b']; ?>;
+                answer_c = <?php echo $data['phase_4']['answer_c']; ?>;
+                break;
+        }
+        
+    }
+
+
+    </script>
+    <script src="js/movement.js"></script>   
+    <script src="js/fish.js"></script>   
 </body>
 </html>
