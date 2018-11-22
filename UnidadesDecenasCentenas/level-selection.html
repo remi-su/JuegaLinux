@@ -7,20 +7,12 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
 
-<style>
-	
-
-</style>
-
-
 </head>
-<body class="h-100 w-100 justify-content-center align-self-center">
-
+<body class="body h-100 w-100 justify-content-center align-self-center">
     <!-- Inicio de navBar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark mynav">
         <!-- Brand/logo -->
         <a class="navbar-brand" href="#">Maestro Linux</a>
-
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -32,7 +24,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="./controlActividades">Actividades</a>
             </li>
-            
         </ul>
 
         <ul class="navbar-nav ml-auto">
@@ -47,9 +38,6 @@
 	
 	<div class="row justify-content-center align-self-center">
 	<div class="container w-50">
-
-		
-
 
 <div class="card text-white bg-info mb-3 level-card" style="">
   <div class="card-body">
@@ -89,54 +77,12 @@
 	    <input hidden="true" name="level" type="text" value="4">
 	    <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
 		</form>
-
   </div>
 </div>
-
-
-
 	</div>
 	</div>
 	<script src="../JS/jquery.min.js" type="text/javascript" language="javascript"></script>
-	<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-	<script type="text/javascript">
-
-/*
-		document.getElementById("1").addEventListener("click", cargarJuego);
-		document.getElementById("2").addEventListener("click", cargarJuego);
-		document.getElementById("3").addEventListener("click", cargarJuego);
-		document.getElementById("4").addEventListener("click", cargarJuego); 
-*/
-/*
-function cargarJuego(){
-
-	$.ajax({ url: 'index.php',
-	data: {'level': this.id},
-	type: 'post',
-	success: function(output) {
-
-	}
-	});
-}*/
-	/*
-
-function cargarJuego(num_level) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "php/level-controller.php", true);
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-
-      window.location = output
-    }
-  };
-
-  xhttp.send("");
-}*/
-
-	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 </body>
 </html>

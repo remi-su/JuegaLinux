@@ -1,3 +1,8 @@
+window.onload = function() {
+    hideLostPanel();
+}
+var thread;
+
 function sleep(milliseconds) {
     var start = new Date().getTime();
     for (var i = 0; i < 1e7; i++) {
@@ -7,7 +12,6 @@ function sleep(milliseconds) {
     }
   }
 function myMove(movement, fish) {
-  
     var posX = 0;
     var posY = 0;
     var fish_container = document.getElementById(fish.id);
@@ -42,18 +46,23 @@ function myMove(movement, fish) {
 
 
 document.getElementById("start").addEventListener("click", start_level);
+document.getElementById("next").addEventListener("click", next_level);
 
 function start_level(){
     //
+    hideLostPanel();
     delete_elements("fish_container");
     elements = [];
-    alert(actual_phase);
     change_fase(actual_phase);
 
 
     var window = document.getElementById('initial-message');
     window.style.visibility='hidden'; 
     generateOptionPanel();
+
+    setTimeout(function afterTwoSeconds() {
+        penguin_state(0);
+    }, 1000);
 
     setTimeout(function afterTwoSeconds() {
         penguin_state(1);
@@ -70,14 +79,15 @@ function start_level(){
     
     //penguin_state(0);
     setTimeout(function afterTwoSeconds() {
-
-        generate_level();
-      }, 3000);
-
-      setTimeout(function afterTwoSeconds() {
         move_pingu(20);
-        move_fish();
-      }, 3000+ time_before_escape);
+        generate_level();
+
+      }, 3000);
+    var thread = setInterval(incrementSeconds, 3000);
+  /*  setTimeout(function afterTwoSeconds() {
+        
+        
+    }, 3000 + (time_before_escape*actual_phase));*/
 }
 
 function generate_level(){
@@ -93,6 +103,10 @@ function generate_level(){
 
 }
 
+function disable(){
+    document.getElementById("Button").disabled = true;
+}
+
 function generateOptionPanel(){
     var window = document.getElementById('panel-container');
     window.innerHTML = "<div id='control-panel' class='control-panel'>"+
@@ -106,7 +120,6 @@ function generateOptionPanel(){
     window.style.visibility='visible';
     var boton = document.getElementById('option_a');
     boton.addEventListener('click', check_answer);
-    alert(answer_a);
     boton.innerHTML= answer_a;
     var boton = document.getElementById('option_b');
     boton.addEventListener('click', check_answer);
@@ -116,17 +129,26 @@ function generateOptionPanel(){
     boton.innerHTML= answer_c; 
 }
 
+function generateLostPanel(){
+    var window = document.getElementById('help');
+    window.style.visibility='visible';
+}
+
+
+function hideLostPanel(){
+    var window = document.getElementById('help');
+    window.style.visibility='hidden';
+
+}
 
 function check_answer(){
     var boton = this;
     var answer = boton.innerHTML;
     if(num_fish == answer && fish_still_there && actual_phase <4){
-        alert('you win');
             setTimeout( next_level, 3000);
 
     }else if(actual_phase<4){
-        alert('noooooooooooooo');
-        next_level();
+        generateLostPanel();
         
     }else{
         window.location = "level-selection.html";
@@ -144,7 +166,6 @@ function lose(){
 function next_level(){
     start_level();
 }
-
 
 
 function generateFish(cont){
@@ -179,11 +200,9 @@ function delete_elements(class_name){
 function delete_elements_by_id(class_name){
         //var elements = document.getElementById(class_name);
         //elements.parentNode.innerHTML = "";
-        var parent = document.getElementById("body");
-var child = document.getElementsByClassName("fish_container");
-parent.removeChild(child);
-
-
+    var parent = document.getElementById("body");
+    var child = document.getElementsByClassName("fish_container");
+    parent.removeChild(child);
 }
 
 /*
@@ -241,7 +260,6 @@ function move_one_fish(html_object_id){
     var fish_container;            
 
     function frame(){
-            
   
         if(fish_container != null){
         var position = fish_container.getBoundingClientRect();
@@ -251,18 +269,14 @@ function move_one_fish(html_object_id){
             fish= new Fish(html_object_id);
             fish_container = document.getElementById(html_object_id);
         }
-        
-
         //if(x>10000){
          //   clearInterval(id);
         //}
-function stop(){
-    clearInterval(frame);
-}
-
     }
 }
 
 
-
+function myStopFunction() {
+    clearInterval(thread);
+}
 

@@ -2,13 +2,16 @@
     margin: 0;
 
 }
+
+.body{
+  background-image: url("../../Recursos/IMG/fondo.png");
+}
 @font-face {
   font-family: Arcade;
   src: url(../font/ArcadeClassic.TTF);
 }
 
 .body{
-    background: #7EC0EE;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -1009,6 +1012,22 @@ animation-fill-mode: forwards;
 .text{
   position: absolute;
   z-index: 2;
+
+}
+
+.help{
+    position: absolute;
+  background: rgba(70, 80, 26, 0.87);
+  
+  height: 300px;
+  width: 80%;
+  z-index: 101;
+  left: 10%;
+  top: 20%;
+  padding: 15px;
+  border-radius: .25em;
+  display: flex;
+  flex-direction: column;
 
 }
 

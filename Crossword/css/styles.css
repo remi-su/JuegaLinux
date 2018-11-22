@@ -1,0 +1,25 @@
+
+div.container1 {
+  background-color: black;
+  text-align:center;
+  height:100%;
+  width: 100%;
+  color: white;
+  position:absolute;
+ }
+
+.col1{
+	padding-right:0 !important;
+}
+.col2{
+	padding:0 !important;
+}
+.col3{
+	padding:0 !important;
+}
+.col4{
+	padding-left:0 !important;
+}
+.col5{
+	padding-left:0 !important;
+}

@@ -9,8 +9,7 @@ function Fish(id) {
 
     this.aleatoriMovement= function (posX, actualY, direction, heigh){
         var x = posX;
-        
-            return ((-1)*((direction)*posX)*((direction)*posX)+heigh);
+        return ((-1)*((direction)*posX)*((direction)*posX)+heigh);
     }
 
     this.paint_fish= function(){
@@ -30,7 +29,6 @@ function Fish(id) {
         var x = posX;
         var y=10;
         var y= (-1)*((x-3)*(x-3))/100000;
-        //alert(x*x);
         return y;
     };
 
@@ -41,9 +39,7 @@ function Fish(id) {
         function frame(){ 
             
                 for(var x=0; x<10;x+=20){  
-                    //alert(num);
                     var fish_container = document.getElementById('animated-fish1');
-                    //alert(fish_container);
                     var position = fish_container.getBoundingClientRect();
                     //fish_container.style.top = position.top - escape(position.left+x)+'px';
                     fish_container.style.left = position.left +10+ 'px'; 

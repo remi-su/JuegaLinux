@@ -10,8 +10,6 @@
 </head>
 <body id="body" class="body">
 
-
-
     <!-- Inicio de navBar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark mynav">
         <!-- Brand/logo -->
@@ -33,8 +31,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link nombreUsuario" id="nombreUsuario">Nombre Usuario</a>
-            </li>
+                <div id='seconds-counter'> </div>            </li>
             <li class="nav-item">
                 <a class="nav-link"><button class="btn btn-sm btn-light" id="desconectar">Cerrar Sesión</button></a>
             </li>
@@ -47,9 +44,132 @@
                 <h2 class="help-pingu-title">  Ayuda  a  pingu </h2>
                 <span align="center">Ayuda  a  pingui  a  contar <br>
                       sus  pescados</span>
+
+                <div class="" style="display: flex; height: 200px; align-items: center;">
+                    <div class="col-4">
+                        <div class=''>
+                           <div class='fish element'>
+                                <div class='fish-body' style='background:red;' >
+                                    <div class='eye'>
+                                        <div class='pupil'>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='fin' style='background:red;'>
+                                </div>
+                                <div class='fin fin-bottom' style='background:red;'>
+                                </div>
+                            </div>
+                        </div>
+                        valor x 1
+                    </div>
+                
+                <div class="col-4">
+                    <div class=''>
+                           <div class='fish element'>
+                                <div class='fish-body' style='background:red;' >
+                                    <div class='eye'>
+                                        <div class='pupil'>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='fin' style='background:red;'>
+                                </div>
+                                <div class='fin fin-bottom' style='background:red;'>
+                                </div>
+                            </div>
+                        </div>
+                        valor x 10
+                </div>
+                <div class="col-4">
+                    <div class=''>
+                           <div class='fish element'>
+                                <div class='fish-body' style='background:red;' >
+                                    <div class='eye'>
+                                        <div class='pupil'>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='fin' style='background:red;'>
+                                </div>
+                                <div class='fin fin-bottom' style='background:red;'>
+                                </div>
+                            </div>
+                        </div>
+                        valor x 100
+                </div>
+                    
+                </div>
                 <button id="start" class='start-button'>Entendido</button>
                 
             </div>
+
+
+        <div id="help" class="help">
+                <h2 class="title">  Recuerda que ...</h2>
+                <span align="center">Recuerda que:
+                </span>
+                    <div class="" style="display: flex; height: 200px; align-items: center;">
+                    <div class="col-4">
+                        la suma de tres
+                        <div class=''>
+                           <div class='fish element'>
+                                <div class='fish-body' style='background:red;' >
+                                    <div class='eye'>
+                                        <div class='pupil'>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='fin' style='background:red;'>
+                                </div>
+                                <div class='fin fin-bottom' style='background:red;'>
+                                </div>
+                            </div>
+                        </div> = 3 unidades
+                    </div>
+                
+                <div class="col-4">
+
+                    la suma de diez 
+                    <div class=''>
+                           <div class='fish element'>
+                                <div class='fish-body' style='background:red;' >
+                                    <div class='eye'>
+                                        <div class='pupil'>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='fin' style='background:red;'>
+                                </div>
+                                <div class='fin fin-bottom' style='background:red;'>
+                                </div>
+                            </div>
+                        </div>  = Una decena
+                        valor x 10
+                </div>
+                <div class="col-4">
+                    La suma de 30 
+                    <div class=''>
+                           <div class='fish element'>
+                                <div class='fish-body' style='background:red;' >
+                                    <div class='eye'>
+                                        <div class='pupil'>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='fin' style='background:red;'>
+                                </div>
+                                <div class='fin fin-bottom' style='background:red;'>
+                                </div>
+                            </div>
+                        </div> = 300 unidades = 3 centenas
+                        valor x 100
+                </div>
+
+                </div>
+                <button id="next" class='btn-primary'>siguiente nivel</button>
+                
+        </div>
 
     <div class="main-container">   
         <div class="first-row row" >
@@ -279,6 +399,7 @@ function generate_phase($num_fish,$num_bags, $answer_a, $answer_b, $answer_c){
     var fish_still_there= true;
 
     function change_fase(phase){
+        fish_still_there = true;
         actual_phase++;
         switch(actual_phase){
             case 1:
@@ -312,9 +433,8 @@ function generate_phase($num_fish,$num_bags, $answer_a, $answer_b, $answer_c){
         }
         
     }
-
-
     </script>
+    <script src="js/time.js"></script> 
     <script src="js/movement.js"></script>   
     <script src="js/fish.js"></script>   
 </body>
