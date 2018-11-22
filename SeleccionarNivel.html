@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="h-100 w-100">
+<head>
+	<title>Seleccionar Nivel</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
+
+  <style>
+
+
+</style>
+
+
+</head>
+<body class="h-100 w-100 justify-content-center align-self-center">
+
+  <!-- Inicio de navBar -->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark mynav">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">Alumnos Linux</a>
+
+
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link nombreUsuario" id="nombreUsuario">Nombre Usuario</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"><button class="btn btn-sm btn-light" id="desconectar">Cerrar Sesión</button></a>
+      </li>
+    </ul>
+  </nav><!-- Fin de navBar -->
+
+  <div class="row justify-content-center align-self-center">
+   <div class="container w-50">
+
+
+
+
+    <div class="card text-white bg-info mb-3 level-card" style="">
+      <div class="card-body">
+        <h5 class="card-title">Números</h5>
+        <p class="card-text"> Esta actividad contiene un ejercicio sobre números.</p>
+        <form action="sopaLetras.html?act=1" method="post" >
+         <input hidden="true" name="level" type="text" value="1">
+         <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+       </form>
+     </div>																		
+   </div>		
+
+   <div class="card text-white bg-success mb-3 level-card" style="">
+    <div class="card-body">
+      <h5 class="card-title">Colores</h5>
+      <p class="card-text">Esta actividad contiene un ejercicio sobre colores.</p>
+      <form action="sopaLetras.html?act=2" method="post" >
+       <input hidden="true" name="level" type="text" value="2">
+       <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+     </form>
+   </div>
+ </div>
+ <div class="card text-white bg-warning mb-3 level-card" style="">
+  <div class="card-body">
+    <h5 class="card-title">Ropa</h5>
+    <p class="card-text">Esta actividad contiene un ejercicio sobre ropa y vestimenta.</p>
+    <form action="sopaLetras.html?act=3" method="post" >
+     <input hidden="true" name="level" type="text" value="3">
+     <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+   </form>
+ </div>
+</div>
+<div class="card text-white bg-danger mb-3 level-card" style="">
+  <div class="card-body">
+    <h5 class="card-title">Frutas</h5>
+    <p class="card-text">Esta actividad contiene un ejercicio sobre frutas.</p>
+    <form action="sopaLetras.html?act=4" method="post" >
+     <input hidden="true" name="level" type="text" value="4">
+     <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+   </form>
+ </div>
+</div>
+<div class="card text-white bg-danger mb-3 level-card" style="">
+  <div class="card-body">
+    <h5 class="card-title">Materiales escolares</h5>
+    <p class="card-text">Esta actividad contiene un ejercicio sobre materiales escolares.</p>
+    <form action="sopaLetras.html?act=5" method="post" >
+     <input hidden="true" name="level" type="text" value="4">
+     <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+   </form>
+ </div>
+</div>
+<div class="card text-white bg-danger mb-3 level-card" style="">
+  <div class="card-body">
+    <h5 class="card-title">Equipo Compúto</h5>
+    <p class="card-text">Esta actividad contiene un ejercicio sobre equipo de compúto.</p>
+    <form action="sopaLetras.html?act=6" method="post" >
+     <input hidden="true" name="level" type="text" value="4">
+     <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+   </form>
+ </div>
+</div>
+
+
+
+</div>
+</div>
+<script src="../JS/jquery.min.js" type="text/javascript" language="javascript"></script>
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+/*
+		document.getElementById("1").addEventListener("click", cargarJuego);
+		document.getElementById("2").addEventListener("click", cargarJuego);
+		document.getElementById("3").addEventListener("click", cargarJuego);
+		document.getElementById("4").addEventListener("click", cargarJuego); 
+    */
+/*
+function cargarJuego(){
+
+	$.ajax({ url: 'index.php',
+	data: {'level': this.id},
+	type: 'post',
+	success: function(output) {
+
+	}
+	});
+}*/
+	/*
+
+function cargarJuego(num_level) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "php/level-controller.php", true);
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      window.location = output
+    }
+  };
+
+  xhttp.send("");
+}*/
+
+</script>
+
+</body>
+</html>
