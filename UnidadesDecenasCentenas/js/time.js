@@ -1,18 +1,26 @@
-var seconds = time_before_escape/1000;
-var timer = document.getElementById('seconds-counter');
+/*var thread;
+var timer;
+
+function initCounter(){
+	thread = setInterval(incrementSeconds, 1);
+	timer = document.getElementById('seconds-counter');
+	timer.innerText = "10";
+}
 
 function incrementSeconds() {
 
-
     if (seconds > 0) {
     	seconds -= 1;
-    	timer.innerText = "Te quedan " + seconds;
+    	timer.innerText = seconds;
     }else{
-    	move_fish();
     	myStopFunction();
+    	move_fish();
+    	//setInterval()
+    	
     }
 
 }
 
-
-
+function myStopFunction() {
+    clearInterval(thread);
+}*/

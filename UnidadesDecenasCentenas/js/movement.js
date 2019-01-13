@@ -1,16 +1,36 @@
 window.onload = function() {
     hideLostPanel();
 }
-var thread;
 
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        break;
-      }
+var thread;
+var timer;
+
+function initCounter(){
+    thread = setInterval(incrementSeconds, 1000);
+    timer = document.getElementById('seconds-counter');
+    timer.innerText = "10";
+}
+
+function incrementSeconds() {
+
+    if (seconds > 0) {
+        seconds -= 1;
+        timer.innerText = seconds;
+        
+    }else{
+        fish_still_there = false;
+        move_fish();
+        stopLevel();
+        //setInterval()
     }
-  }
+
+}
+
+function stopLevel() {
+    seconds= 15;
+    clearInterval(thread);
+}
+
 function myMove(movement, fish) {
     var posX = 0;
     var posY = 0;
@@ -22,39 +42,34 @@ function myMove(movement, fish) {
     function frame() {
         var position = fish_container.getBoundingClientRect();
         if(fish.positionX<15){
-            //document.getElementById("demo").innerHTML = "fish: "+ fish.fullName();
             switch(movement){
                 case 1: fish_container.style.top = position.top - fish.aleatoriMovement(fish.positionX, position.top, direction(),height)+'px';
                 fish_container.style.left = position.left+ boost + 'px'; 
                 break;
                 case 2: fish_container.style.top = position.top - fish.aleatoriMovement(fish.positionX, position.top, direction() ,height)+'px'; 
-                fish_container.style.left = position.left+movement + 20+'px'; 
+                fish_container.style.left = position.left+movement + 10 +'px'; 
                 break;
                 case 3: fish_container.style.top = position.top - fish.aleatoriMovement(fish.positionX, position.top, direction(),height)+'px'; 
                 fish_container.style.left = position.left+movement +20 +'px'; 
                 break;
                 case 4: fish_container.style.top = position.top - fish.aleatoriMovement(fish.positionX, position.top, direction(),height)+'px'; 
-                fish_container.style.left = position.left+movement + 20+'px'; 
+                fish_container.style.left = position.left+movement + 30+'px'; 
                 break; 
-
             }
+            
             fish.positionX++
         }
-        
     }
   }
-
-
-document.getElementById("start").addEventListener("click", start_level);
-document.getElementById("next").addEventListener("click", next_level);
+  
+var startButton = document.getElementById("start").addEventListener("click", start_level);
 
 function start_level(){
-    //
     hideLostPanel();
+    initCounter();
     delete_elements("fish_container");
     elements = [];
     change_fase(actual_phase);
-
 
     var window = document.getElementById('initial-message');
     window.style.visibility='hidden'; 
@@ -82,16 +97,11 @@ function start_level(){
         move_pingu(20);
         generate_level();
 
+
       }, 3000);
-    var thread = setInterval(incrementSeconds, 3000);
-  /*  setTimeout(function afterTwoSeconds() {
-        
-        
-    }, 3000 + (time_before_escape*actual_phase));*/
 }
 
 function generate_level(){
-
     for (var i; i < num_fish; i++) {
         delete_elements('fish_container');
     }
@@ -100,7 +110,6 @@ function generate_level(){
     for(var i =0; i< num_fish ; i++){
         generateFish(i);
     }
-
 }
 
 function disable(){
@@ -130,13 +139,13 @@ function generateOptionPanel(){
 }
 
 function generateLostPanel(){
-    var window = document.getElementById('help');
+    var window = document.getElementById("help-panel");
     window.style.visibility='visible';
+
 }
 
-
 function hideLostPanel(){
-    var window = document.getElementById('help');
+    var window = document.getElementById('help-panel');
     window.style.visibility='hidden';
 
 }
@@ -144,11 +153,19 @@ function hideLostPanel(){
 function check_answer(){
     var boton = this;
     var answer = boton.innerHTML;
-    if(num_fish == answer && fish_still_there && actual_phase <4){
-            setTimeout( next_level, 3000);
+    stopLevel();
+    if(num_fish == answer && fish_still_there && actual_phase <5){
+        addPoints();
 
-    }else if(actual_phase<4){
+        var div = document.getElementById('winner');
+        div.style.visibility='visible';
+
+        setTimeout( next_level, 3000);
+
+    }else if(actual_phase<5){
+        
         generateLostPanel();
+        setTimeout( next_level, 3000);
         
     }else{
         window.location = "level-selection.html";
@@ -164,23 +181,23 @@ function lose(){
 }
 
 function next_level(){
+    var div = document.getElementById('winner');
+    div.style.visibility='hidden';
     start_level();
 }
 
-
 function generateFish(cont){
     var movement = 0;
-
     var fish= new Fish('animated-fish'+cont);
     fish.paint_fish();
-    var para = document.createElement("div");
-    para.className = "fish_container";
-    para.innerHTML=
+    var fish_container = document.createElement("div");
+    fish_container.className = "fish_container";
+    fish_container.innerHTML=
                 "<div id='animated-fish"+cont +"' class='fish-container' "+
                 "style='z-index:10; left: 524px;'>"+
                 "<div class='fish element'><div class='fish-body' style='background:"+ fish.color +";' ><div class='eye'><div class='pupil'></div></div></div><div class='fin' style='background:"+ fish.color +";'></div><div class='fin fin-bottom' style='background:"+ fish.color +";'>"+
                 "</div></div></div>";
-                document.body.appendChild(para);
+                document.body.appendChild(fish_container);
     var movement= Math.floor(Math.random() * 4) + 1;
     myMove(movement, fish);
 
@@ -194,7 +211,6 @@ function delete_elements(class_name){
                 elements[0].parentNode.removeChild(elements[0]);
             }
         }
-
 }
 
 function delete_elements_by_id(class_name){
@@ -204,23 +220,6 @@ function delete_elements_by_id(class_name){
     var child = document.getElementsByClassName("fish_container");
     parent.removeChild(child);
 }
-
-/*
-
-            <div id="animated-fish" class="fish-container">
-                <div class="fish">
-                    <div class="fish-body">
-                        <div class="eye">
-                            <div class="pupil"></div>
-                        </div>
-                    </div>
-                    <div class="fin"></div>
-                    <div class="fin fin-bottom"></div>
-                </div>
-            </div>
-
-*/ 
-  //y=-\left(x-3\right)^2+10
 
 function direction(){
     return Math.random() < 0.5 ? -1 : 1;
@@ -250,17 +249,21 @@ function move_fish(){
         var element_id = 'animated-fish' + i;       
         move_one_fish(element_id);   
     }
-    fish_still_there=false;
+    fishEscaped();
+    
+}
+
+function fishEscaped(){
+    generateLostPanel();
+    setTimeout( next_level, 3000);
 }
 
 function move_one_fish(html_object_id){
           
     var id = setInterval(frame, 50);
     var fish;
-    var fish_container;            
-
+    var fish_container;
     function frame(){
-  
         if(fish_container != null){
         var position = fish_container.getBoundingClientRect();
         fish_container.style.top = position.top + direction()*fish.escape(position.left+30)+'px';
@@ -269,14 +272,26 @@ function move_one_fish(html_object_id){
             fish= new Fish(html_object_id);
             fish_container = document.getElementById(html_object_id);
         }
-        //if(x>10000){
-         //   clearInterval(id);
-        //}
     }
 }
 
-
-function myStopFunction() {
-    clearInterval(thread);
+function addPoints(){
+    var points = document.getElementById("points");
+    var actualPoints = parseInt(points.innerHTML);
+    var totalPoints
+    if(actualPoints == 0){
+        totalPoints = seconds * 1000;
+    }else{
+        totalPoints = actualPoints * seconds;
+    }
+    points.innerHTML = totalPoints;
 }
+
+
+
+
+
+
+
+
 

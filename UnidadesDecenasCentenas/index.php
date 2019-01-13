@@ -10,6 +10,14 @@
 </head>
 <body id="body" class="body">
 
+
+    <!--
+    efecto de nieve
+        http://codeconvey.com/make-css-snow-animation-effect-using-css3/
+
+
+     -->
+
     <!-- Inicio de navBar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark mynav">
         <!-- Brand/logo -->
@@ -18,28 +26,75 @@
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="./controlGrupos">Grupos</a>
+                <a class="nav-link">Puntos: </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./controlAlumnos">Alumnos</a>
+                <a  class="nav-link" id="points"> 0</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./controlActividades">Actividades</a>
+                <a class="nav-link">te quedan: </a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" id='seconds-counter'> </a>
             </li>
             
         </ul>
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <div id='seconds-counter'> </div>            </li>
+                          </li>
             <li class="nav-item">
-                <a class="nav-link"><button class="btn btn-sm btn-light" id="desconectar">Cerrar Sesión</button></a>
             </li>
         </ul>
     </nav><!-- Fin de navBar -->
 
 
-    
+
+
+    <DIV class="snow-container">
+
+
+
+<div class="snowflakes" aria-hidden="true">
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+  ❄
+  </div>
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+  ❄
+  </div>
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+  ❄
+  </div>
+</div>
+
+
+
+
+
+
+    </DIV>
+
         <div id="initial-message" class="initial-message">
                 <h2 class="help-pingu-title">  Ayuda  a  pingu </h2>
                 <span align="center">Ayuda  a  pingui  a  contar <br>
@@ -66,35 +121,13 @@
                 
                 <div class="col-4">
                     <div class=''>
-                           <div class='fish element'>
-                                <div class='fish-body' style='background:red;' >
-                                    <div class='eye'>
-                                        <div class='pupil'>                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='fin' style='background:red;'>
-                                </div>
-                                <div class='fin fin-bottom' style='background:red;'>
-                                </div>
-                            </div>
-                        </div>
+                        <img class="medium_bag" height="100px" width="150px" src='images/mediana.png'>
+                    </div>
                         valor x 10
                 </div>
                 <div class="col-4">
                     <div class=''>
-                           <div class='fish element'>
-                                <div class='fish-body' style='background:red;' >
-                                    <div class='eye'>
-                                        <div class='pupil'>                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='fin' style='background:red;'>
-                                </div>
-                                <div class='fin fin-bottom' style='background:red;'>
-                                </div>
-                            </div>
+                        <img class="big_bag" height="100px" width="150px" src='images/grande.png'>
                         </div>
                         valor x 100
                 </div>
@@ -105,14 +138,17 @@
             </div>
 
 
-        <div id="help" class="help">
+        <div id="help-panel" class="help">
+            <div class='help-title'>
                 <h2 class="title">  Recuerda que ...</h2>
-                <span align="center">Recuerda que:
+                <img src="images/caratriste.jpg" height="100px" width="100px" style="margin-left: auto" />
+            </div>
+                <span align="center">Debes decir cuantos peces hay antes de que se acabe el tiempo
                 </span>
-                    <div class="" style="display: flex; height: 200px; align-items: center;">
-                    <div class="col-4">
+                    <div class="row row2" style="display: flex; height: 200px; align-items: center;">
+                    <div class="col-3">
                         la suma de tres
-                        <div class=''>
+                        <div class='fish-center'>
                            <div class='fish element'>
                                 <div class='fish-body' style='background:red;' >
                                     <div class='eye'>
@@ -125,13 +161,14 @@
                                 <div class='fin fin-bottom' style='background:red;'>
                                 </div>
                             </div>
-                        </div> = 3 unidades
+                            <div style="margin-left: 20%">=</div>
+                        </div> 3 unidades
                     </div>
                 
-                <div class="col-4">
+                <div class="col-3">
 
                     la suma de diez 
-                    <div class=''>
+                    <div class='fish-center'>
                            <div class='fish element'>
                                 <div class='fish-body' style='background:red;' >
                                     <div class='eye'>
@@ -144,12 +181,13 @@
                                 <div class='fin fin-bottom' style='background:red;'>
                                 </div>
                             </div>
-                        </div>  = Una decena
+                            <div style="margin-left: 20%">=</div>
+                        </div> Una decena
                         valor x 10
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     La suma de 30 
-                    <div class=''>
+                    <div class='fish-center'>
                            <div class='fish element'>
                                 <div class='fish-body' style='background:red;' >
                                     <div class='eye'>
@@ -162,17 +200,31 @@
                                 <div class='fin fin-bottom' style='background:red;'>
                                 </div>
                             </div>
-                        </div> = 300 unidades = 3 centenas
+                            <div style="margin-left: 20%">=</div>
+                        </div> 300 unidades = 3 centenas
                         valor x 100
                 </div>
 
                 </div>
-                <button id="next" class='btn-primary'>siguiente nivel</button>
-                
+                <span class="center">Cargando siguiente nivel</span>
         </div>
 
-    <div class="main-container">   
+    <div class="main-container"> 
+
+
         <div class="first-row row" >
+
+                    <div id="winner" class='winner'>
+               
+           <span style='color: #4285f4'>felicidades</span> 
+           <span style='color: #ea4335'>has</span> 
+           <span style='color: #fbbc05'>ganado</span> 
+           <span style='color: #4285f4'>el</span> 
+           <span style='color: #4285f4'>nivel</span> 
+
+           <img src='images/cara.jpg'/ height="100px" width="100px">
+
+       </div>  
             <div id="background-wrap">
                 <div class="textContainer">
 
@@ -280,51 +332,7 @@
         </div> 
         </div>
         <script>
-
-/*
-function ConectarBaseDatos($sql){
-
-    $mysqli = new mysqli('127.0.0.1', 'root', '', 'proyectolinux');
-    if(!$mysqli){
-        return false; 
-    }
-    else{
-        $resultado = $mysqli->query($sql);
-        $mysqli->close();
-        return $resultado;               
-    }
-
-}
-
-function loadLevelData($id){
-    $sql = "SELECT * FROM unidadesdescenascentenas WHERE idActividad = 6";
-    $resultado = ConectarBaseDatos($sql);
-    if ($resultado->num_rows > 0){
-        
-        $fila =  $resultado->fetch_array(MYSQLI_ASSOC);
-        return $fila;
-
-    } else {
-        return "No hay datos";
-    }
-}
-*/
-//$level_data= loadLevelData($_POST['level']);
 <?php
-
-
-
-    /*
-    switch($id){
-        case 1: echo 'const num_fish=1; const answer_a = 1; const answer_b = 5; const answer_c = 9;';
-                break;
-        case 2:  echo 'const num_fish=2; const answer_a = 2;const answer_b = 5;const answer_c = 9;';
-                break;
-        case 3:  echo 'const num_fish=3;const answer_a = 3;const answer_b = 5;const answer_c = 9;';
-                break;
-        case 4:  echo 'const num_fish=4;const answer_a = 4;const answer_b = 5;const answer_c = 9;';
-    }
-    */
     $level = intval($_POST['level']);
     $data = array();
     switch ($level) {
@@ -372,8 +380,6 @@ function generate_level($level){
             break;
         default: 
     }
-    
-
     return $data;
 }
 
@@ -381,7 +387,8 @@ function generate_level($level){
 function generate_phase($num_fish,$num_bags, $answer_a, $answer_b, $answer_c){
     $data = array();
     $data['num_fish'] = $num_fish;
-    $data['num_bags'] = $num_bags;
+    $data['num_medium_bags'] = $num_bags;
+    $data['num_big_bags'] = $num_bags;
     $data['answer_a'] = $answer_a;
     $data['answer_b'] = $answer_b;
     $data['answer_c'] = $answer_c;
@@ -395,11 +402,14 @@ function generate_phase($num_fish,$num_bags, $answer_a, $answer_b, $answer_c){
     var answer_c;
     var actual_phase = 0;
     const time_before_escape = 10000;// en ms
+    var seconds = time_before_escape/1000;
     
     var fish_still_there= true;
 
     function change_fase(phase){
         fish_still_there = true;
+        
+        seconds = time_before_escape/1000;
         actual_phase++;
         switch(actual_phase){
             case 1:
@@ -431,11 +441,10 @@ function generate_phase($num_fish,$num_bags, $answer_a, $answer_b, $answer_c){
                 answer_c = <?php echo $data['phase_4']['answer_c']; ?>;
                 break;
         }
-        
     }
     </script>
-    <script src="js/time.js"></script> 
     <script src="js/movement.js"></script>   
-    <script src="js/fish.js"></script>   
+    <script src="js/fish.js"></script>
+    <script src="js/time.js"></script>    
 </body>
 </html>
