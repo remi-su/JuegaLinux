@@ -1,6 +1,8 @@
 
 (function ($) {
     var puntos = 0;
+    var palabrasEncontradas = [""];
+    var contadorPalabrasEncontradas = 0;
     Sopa = function ($el, options, configuracion) {
         $t = $("<table border='1'>");
 
@@ -360,7 +362,21 @@
                         for (var i = 0; i < elementos.length; i++) {
                             elementos[i].classList.remove("seleccionado");
                         }
-                        puntos += 20;
+                        var darPuntos = true;
+                        
+                        for(var i = 0; i < palabrasEncontradas.length; i++){
+                            if (palabrasEncontradas[i].localeCompare(selecion) == 0){
+                                darPuntos = false;
+                                break;
+                            }
+                        }
+
+                        if (darPuntos){
+                            puntos += 20;
+                            palabrasEncontradas[contadorPalabrasEncontradas] = selecion;
+                            contadorPalabrasEncontradas++;
+                        }
+                        
                         $("#puntos").empty();
                         $("#puntosTotales").val(puntos); 
                         $("#puntos").append("Puntos: " + puntos);
@@ -429,7 +445,13 @@
                             i++;
                         }
                     }
+                    
                     $(".noes").css("color", "");
+                }
+
+                var elementos = document.getElementsByClassName("noes");
+                for (var i = 0; i < elementos.length; i++) {
+                    elementos[i].style.color = "#000000";
                 }
             }
         }
@@ -450,12 +472,20 @@
         var urlCompleto = window.location + "";
 
         var idActividad = urlCompleto.split("=")[1];
-        var colores = {"RED","YELLOW","PINK","BLUE","GREEN"};
+        var colores = ["#FF0000","#138d75","#9b59b6","#5dade2", "#2ecc71"];
         var palabras = obtenerPalabras(idActividad);
-        var htmlTabla = "<table> <tr><td> Palabras a encontrar: </td></tr>";
+        var htmlTabla = "<table> <tr><td style='font-size: 30px !important;' class ='palabraschidas'> Palabras a encontrar: </td></tr>";
 
         for (var i = 0; i < palabras.length; i++) {
-            htmlTabla +="<tr><td id=\""+ palabras[i] +"\">"+ "<font color='" + colores[i] + "'>" + palabras[i] + "</font></td></tr>";
+            if ((i + 1)%2==0){
+                htmlTabla +="<tr><td class ='palabraschidas' id=\""+ palabras[i] +"\"><a style='color:"+ colores[i]+"';>" + palabras[i] + "</a></td></tr>";
+            }
+            
+        }
+        for (var i = 0; i < palabras.length; i++) {
+            if ((i + 1)%2==1){
+                htmlTabla +="<tr><td class ='palabraschidas' id=\""+ palabras[i] +"\"><a style='color:"+ colores[i]+"';>" + palabras[i] + "</a></td></tr>";
+            }
         }
 
         htmlTabla += "</table>";

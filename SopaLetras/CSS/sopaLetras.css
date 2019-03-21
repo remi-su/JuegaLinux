@@ -96,7 +96,14 @@ table tr {
     top: 25%;
     left:50%;
     transform: translate(-50%, -50%);
+    font-size: 28px !important;
+    font-weight: bold;
+    color:  #3498db ;
+}
+
+.palabraschidas{
     font-size: 25px !important;
+    font-weight: bold;
 }
 
 .listaPalabras{

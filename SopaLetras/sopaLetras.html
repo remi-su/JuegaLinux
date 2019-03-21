@@ -14,44 +14,37 @@
             onWin: "mostrarTodo"
         };
         $("#sopa").SopaLetras(sopaoption);
-
     });
 </script>
 
 </head>
 <body>
 
-
+    <input type="hidden" name="puntosTotal" id="puntosTotales" value=0>
     <!-- Inicio de navBar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!-- Brand/logo -->
-        <a class="navbar-brand" href="#">Alumno Linux</a>
+        <a class="navbar-brand" href="#">¡Misterios en la nieve!</a>
 
         <!-- Links -->
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="./controlGrupos">Grupos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./controlAlumnos">Alumnos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./controlActividades">Actividades</a>
-            </li>
             
+            <li class="nav-item">
+                <a class="nav-link" id="puntos">Puntos: 0</a><div>
+            </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link nombreUsuario" id="nombreUsuario"></a>
+                <a class="nav-link nombreUsuario palabraschidas"id="contador" style="color: #f44336">uwu</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"><button class="btn btn-sm btn-light" id="desconectar">Cerrar Sesión</button></a>
+                <a class="nav-link" href="./SeleccionarNivel"><button class="btn btn-sm btn-light" id="desconectar">Regresar al ménu</button></a>
             </li>
         </ul>
     </nav><!-- Fin de navBar -->
 
-    <dir class="container">
+    <dir class="container-fluid">
 
         <div class="row">
 
@@ -61,21 +54,23 @@
             </div>
             
             <div class="col-md-4">
-                <div class="dialogoCaja">
-                    <img src="./Recursos/IMG/Dialogo.png" width="300px">
-                    <span class="centeredText" id="texto">¡Bienvenido, encuentra todas las palabras!</span>
+                <img src="./Recursos/IMG/peng2.png" class="vineta" width="400px">
+                <div id="dialogoControl"> 
+                    <div class="dialogoCaja">
+                        <img class="centeredText" src="./Recursos/IMG/Dialogo.png" width="400px">
+                        <p class="centeredText" id="texto">¡Bienvenido, encuentra todas las palabras!</p>
+                    </div>
                 </div>
-                
-                <img src="./Recursos/IMG/pinguinoDetective.png" class="vineta" width="200px">
-
             </div>
             <div class="col-md-3">
-                <img src="./Recursos/IMG/HojaNotas.png" class="listaPalabras" width="250px" height="280px">
-                <div class="listaPalabras">
-                    <span id="tablaPalabras">
+                <div class="alinearDerecha">
+                    <img src="./Recursos/IMG/HojaNotas.png" class="listaPalabras" width="350px" height="380px">
+                    <div class="listaPalabras">
+                        <span id="tablaPalabras">
 
-                   </span>     
-               </div>
+                       </span>     
+                    </div>
+                </div>
            </div>
 
        </div>
@@ -86,3 +81,4 @@
 </body>
 
 </html>
+<script type="text/javascript" src="./JS/contador.js"></script>
