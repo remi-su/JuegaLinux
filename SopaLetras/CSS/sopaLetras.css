@@ -21,6 +21,14 @@ body {
     
 }
 
+.contenedor{
+  margin-top: 15px;
+}
+
+.textoBoton{
+  font-size: 25px !important;
+}
+
 nav {
     font-size: 25px !important;
 }

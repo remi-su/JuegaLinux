@@ -42,9 +42,10 @@ $(document).ready(function(){
 				
 			}
 		});
-		
-		
+			
 	}
+
+
 
 	function modificarGrupo(){
 		var gradoYGrupo = $("#listaGrupos option:selected").text();

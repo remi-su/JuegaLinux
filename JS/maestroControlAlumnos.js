@@ -19,11 +19,10 @@ $(document).ready(function(){
 	function modificarAlumno(){
 		var alumnoVerificador = $("#listaAlumnosAModificar option:selected").val();
 		if (alumnoVerificador != 0){
-			var alumnoSeleccionado = $("#listaAlumnosAModificar option:selected").text();
-			var idAlumno = alumnoSeleccionado.split("-")[0];
+			var idAlumno = $("#listaAlumnosAModificar option:selected").val();
 			var nombreAlumno = $("#nombreAlumnoModificar").val();
 			var apellidoAlumno = $("#apellidoAlumnoModificar").val();
-			$.ajax({ url: './MaestroController.php',
+			$.ajax({ url: './AlumnoServicio.php',
 				data: {tipo: "modificarAlumno", idAlumno: idAlumno, nombreNuevo: nombreAlumno, apellidoNuevo: apellidoAlumno},
 				type: 'post',
 				success: function(output) {
@@ -36,10 +35,9 @@ $(document).ready(function(){
 	function eliminarAlumno(){
 		var alumnoVerificador = $("#listaAlumnosAEliminar option:selected").val();
 		if (alumnoVerificador != 0){
-			var alumnoSeleccionado = $("#listaAlumnosAEliminar option:selected").text();
-			var idAlumno = alumnoSeleccionado.split("-")[0];
-			$.ajax({ url: './MaestroController.php',
-				data: {tipo: "eliminarAlumno", idAlumno: idAlumno},
+			var idAlumno = $("#listaAlumnosAEliminar option:selected").val();
+			$.ajax({ url: './AlumnoServicio.php',
+				data: {tipo: "deshabilitarAlumno", idAlumno: idAlumno},
 				type: 'post',
 				success: function(output) {
 					alert(output);
@@ -53,13 +51,11 @@ $(document).ready(function(){
 	function solicitarCreacionAlumno(){
 		var indiceGrupoSeleccionado = $("#listaGrupos option:selected").val();
 		if (indiceGrupoSeleccionado != 0){
-			var gradoYGrupo = $("#listaGrupos option:selected").text();
-			var grado = gradoYGrupo.split("-")[0];
-			var grupo = gradoYGrupo.split("-")[1];
+			var idGrupo = $("#listaGrupos option:selected").val();
 			var nombreAlumno = $("#nombreAlumno").val();
 			var apellidoAlumno = $("#apellidoAlumno").val();
-			$.ajax({ url: './MaestroController.php',
-				data: {tipo: "crearAlumno", grado: grado, grupo: grupo, nombreAlumno: nombreAlumno, apellidoAlumno: apellidoAlumno},
+			$.ajax({ url: './AlumnoServicio.php',
+				data: {tipo: "crearAlumno", idGrupo: idGrupo, nombreAlumno: nombreAlumno, apellidoAlumno: apellidoAlumno},
 				type: 'post',
 				success: function(output) {
 					alert(output);
@@ -86,14 +82,15 @@ $(document).ready(function(){
 	} 
 
 	function obtenerGrupos(){
-		$.ajax({ url: './MaestroController.php',
-			data: {tipo: "obtenerGrupos"},
+		$.ajax({ url: './ServicioGrupo.php',
+			data: {estado: 1, tipo: "obtenerGrupos"},
 			type: 'post',
 			success: function(output) {
-				var listaGrupos = output.split(",");
+
+				var listaGrupos = JSON.parse(output);
 				var htmlListas = "<option value = '0'> Seleccione Grupo </option>";
-				for (var i = 0; i < listaGrupos.length - 1; i++) {
-					htmlListas += "<option value=\""+(i+1)+"\">"+listaGrupos[i]+"</option>";
+				for (var i = 0; i < listaGrupos.lista.length; i++) {
+					htmlListas += "<option value=\""+listaGrupos.lista[i].idGrupo+"\"> Grado: "+listaGrupos.lista[i].grado+" Grupo: "+ listaGrupos.lista[i].grupo +"</option>";
 				}
 				$("#listaGrupos").append(htmlListas);
 				$("#listaEliminarGrupos").append(htmlListas);
@@ -103,18 +100,17 @@ $(document).ready(function(){
 	}
 
 	function obtenerAlumno(listaACambiar,listaGrupo){
-		var gradoYGrupo = $(listaGrupo + " option:selected").text();
-		var grado = gradoYGrupo.split("-")[0];
-		var grupo = gradoYGrupo.split("-")[1];
+		var idGrupo = $(listaGrupo + " option:selected").val();
 
-		$.ajax({ url: './MaestroController.php',
-			data: {tipo: "obtenerAlumnos", grado: grado, grupo: grupo},
+		$.ajax({ url: './AlumnoServicio.php',
+			data: {tipo: "obtenerAlumnos", idGrupo: idGrupo, estado: 1},
 			type: 'post',
 			success: function(output) {
-				var listaGrupos = output.split(",");
+				console.log(output);
+				var listaGrupos = JSON.parse(output);
 				var htmlListas = "<option value = '0'> Seleccione Alumno </option>";
-				for (var i = 0; i < listaGrupos.length - 1; i++) {
-					htmlListas += "<option value=\""+(i + 1)+"\">"+listaGrupos[i]+"</option>";
+				for (var i = 0; i < listaGrupos.lista.length; i++) {
+					htmlListas += "<option value=\""+listaGrupos.lista[i].idAlumno+"\">"+listaGrupos.lista[i].nombreAlumno + " " + listaGrupos.lista[i].apellidoAlumno +"</option>";
 				}
 				$(listaACambiar).empty();
 				$(listaACambiar).append(htmlListas);

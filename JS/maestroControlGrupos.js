@@ -3,7 +3,7 @@ $(document).ready(function(){
 	document.getElementById("crearGrupo").onclick = function () { solicitarCrearGrupo(); };
 	document.getElementById("modificarGrupo").onclick = function () { modificarGrupo(); };
 	document.getElementById("eliminarGrupo").onclick = function () { eliminarGrupo(); };
-	document.getElementById("desconectar").onclick = function () { desconectar(); };
+	document.getElementById("desconectar").onclick = function () { obtenerReporteIndividual(); };
 
 
 	function desconectar(){
@@ -20,7 +20,7 @@ $(document).ready(function(){
 	function solicitarCrearGrupo(){
 		var grado = $("#grado").val();
 		var grupo = $("#grupo").val();
-		$.ajax({ url: './MaestroController.php',
+		$.ajax({ url: './ServicioGrupo.php',
 			data: {grado : grado, grupo: grupo, tipo: "crearGrupo"},
 			type: 'post',
 			success: function(output) {
@@ -30,11 +30,10 @@ $(document).ready(function(){
 	}
 
 	function eliminarGrupo(){
-		var gradoYGrupo = $("#listaAEliminarGrupos option:selected").text();
-		var gradoAEliminar = gradoYGrupo.split("-")[0];
-		var grupoAEliminar = gradoYGrupo.split("-")[1];
-		$.ajax({ url: './MaestroController.php',
-			data: {grado: gradoAEliminar, grupo: grupoAEliminar, tipo: "eliminarGrupo"},
+		var idGrupo = $("#listaAEliminarGrupos option:selected").val();
+		alert(idGrupo);
+		$.ajax({ url: './ServicioGrupo.php',
+			data: {idGrupo : idGrupo, tipo: "eliminarGrupo"},
 			type: 'post',
 			success: function(output) {
 
@@ -46,14 +45,40 @@ $(document).ready(function(){
 		
 	}
 
+	function obtenerReporteIndividual(){
+		var idGrupo = 2;
+		var idTipoActividad = 2;
+		var idAlumnoSeleccionado = 2;
+		var fechaInicio = "15-04-2019";
+		$.ajax({ url: './ActividadServicio.php',
+			data: {idGrupo: idGrupo, tipo: "reporteIndividual", idTipoActividad: idTipoActividad, idAlumnoSeleccionado: idAlumnoSeleccionado, fechaInicio: fechaInicio},
+			type: 'post',
+			success: function(output){
+				console.log(output);
+			}
+		});
+	}
+
+	function obtenerReporteIndividual(){
+		var idGrupo = 2;
+		var idTipoActividad = 2;
+		var fechaInicio = "15-04-2019";
+		$.ajax({ url: './ActividadServicio.php',
+			data: {idGrupo: idGrupo, tipo: "reporteGrupal", idTipoActividad: idTipoActividad, fechaInicio: fechaInicio},
+			type: 'post',
+			success: function(output){
+				console.log(output);
+			}
+		});
+	}
+
 	function modificarGrupo(){
-		var gradoYGrupo = $("#listaGrupos option:selected").text();
-		var gradoAModificar = gradoYGrupo.split("-")[0];
-		var grupoAModificar = gradoYGrupo.split("-")[1];
+		var idGrupo = $("#listaGrupos option:selected").val();
 		var gradoNuevo = $("#gradoNuevo").val();
 		var grupoNuevo = $("#grupoNuevo").val();
-		$.ajax({ url: './MaestroController.php',
-			data: {gradoAModificar : gradoAModificar, grupoAModificar: grupoAModificar, gradoNuevo: gradoNuevo, grupoNuevo: grupoNuevo, tipo: "modificarGrupo"},
+
+		$.ajax({ url: './ServicioGrupo.php',
+			data: {idGrupo: idGrupo, gradoNuevo: gradoNuevo, grupoNuevo: grupoNuevo, tipo: "modificarGrupo"},
 			type: 'post',
 			success: function(output) {
 				alert(output);
@@ -62,17 +87,20 @@ $(document).ready(function(){
 	}
 
 	function obtenerGrupos(){
-		$.ajax({ url: './MaestroController.php',
-			data: {tipo: "obtenerGrupos"},
+		$.ajax({ url: './ServicioGrupo.php',
+			data: {tipo: "obtenerGrupos", estado: 1},
 			type: 'post',
 			success: function(output) {
-				var listaGrupos = output.split(",");
+				var listaGrupos = JSON.parse(output);
+				console.log(listaGrupos);
+				
 				var htmlListas = "";
-				for (var i = 0; i < listaGrupos.length - 1; i++) {
-					htmlListas += "<option value=\""+listaGrupos[i]+"\">"+listaGrupos[i]+"</option>";
+				for (var i = 0; i < listaGrupos.lista.length; i++) {
+					htmlListas += "<option value=\""+listaGrupos.lista[i].idGrupo+"\"> Grado: "+listaGrupos.lista[i].grado+" Grupo: "+ listaGrupos.lista[i].grupo +"</option>";
 				}
 				$("#listaGrupos").append(htmlListas);
 				$("#listaAEliminarGrupos").append(htmlListas);
+				
 			}
 		});
 	}

@@ -19,7 +19,7 @@
   <!-- Inicio de navBar -->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark mynav">
     <!-- Brand/logo -->
-    <a class="navbar-brand" href="#">¡Misterios en la nieve!</a>
+    <a class="navbar-brand textoBoton" href="#">¡Misterios en la nieve!</a>
 
 
 
@@ -28,10 +28,10 @@
         
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-sm btn-primary" style="margin-right: 10px" data-toggle="modal" data-target="#myModal">Instrucciones</button>
+        <button type="button" class="btn btn-sm btn-primary textoBoton" style="margin-right: 10px" data-toggle="modal" data-target="#myModal">Instrucciones</button>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-sm btn-primary">Regresar al Menú</button>
+        <button type="button" class="btn btn-sm btn-primary textoBoton">Regresar al Menú</button>
       </li>
       
     </ul>
@@ -46,7 +46,7 @@
           <p class="card-text"> ¡Los números que nos ayudan a contar se han extraviado! Ayuda a Pingu a encontrar los números antes de que se acabe el tiempo.</p>
           <form action="sopaLetras.html?act=1" method="post" >
            <input hidden="true" name="level" type="text" value="1">
-           <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+           <input type="submit" id="1" class="btn btn-primary textoBoton" value="Jugar"/>
          </form>
        </div>																		
       </div>		
@@ -57,7 +57,7 @@
           <p class="card-text">Alguien se robo los colores del arcoiris mientras Pingu trabajaba ¡Ayuda a Pingu a recuperarlos!.</p>
           <form action="sopaLetras.html?act=2" method="post" >
            <input hidden="true" name="level" type="text" value="2">
-           <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+           <input type="submit" id="1" class="btn btn-primary textoBoton" value="Jugar"/>
          </form>
         </div>
       </div>
@@ -68,7 +68,7 @@
           <p class="card-text">Mientras Pingu tendia la ropa, un fuerte viento se la llevo. Por favor ayuda a Pingu a encontrarla.</p>
           <form action="sopaLetras.html?act=3" method="post" >
           <input hidden="true" name="level" type="text" value="3">
-          <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+          <input type="submit" id="1" class="btn btn-primary textoBoton" value="Jugar"/>
           </form>
         </div>
       </div>
@@ -79,7 +79,7 @@
           <p class="card-text">Ayuda a Pingu con su investigación sobre las frutas, el necesita saber que frutas son más deliciosas, pero para ello debe encontrarlas.</p>
           <form action="sopaLetras.html?act=4" method="post" >
            <input hidden="true" name="level" type="text" value="4">
-           <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+           <input type="submit" id="1" class="btn btn-primary textoBoton" value="Jugar"/>
          </form>
        </div>
       </div>
@@ -90,7 +90,7 @@
           <p class="card-text">En la escuela se han reportado casos de extravios de materiales, ayuda a Pingu a encontrar todos los materiales para que los niños puedan regresar a clases.</p>
           <form action="sopaLetras.html?act=5" method="post" >
            <input hidden="true" name="level" type="text" value="4">
-           <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+           <input type="submit" id="1" class="btn btn-primary textoBoton" value="Jugar"/>
          </form>
        </div>
       </div>
@@ -101,7 +101,7 @@
           <p class="card-text">Esta actividad contiene un ejercicio sobre equipo de compúto.</p>
           <form action="sopaLetras.html?act=6" method="post" >
            <input hidden="true" name="level" type="text" value="4">
-           <input type="submit" id="1" class="btn btn-primary" value="jugar"/>
+           <input type="submit" id="1" class="btn btn-primary textoBoton" value="Jugar"/>
          </form>
        </div>
       </div>
@@ -133,11 +133,11 @@
         <!-- Modal footer -->
         <div class="modal-footer">
           <div style="padding-right: 200px">
-            <button type="button" id="anterior" class="btn btn-info" >Anterior</button>
-            <button type="button" id="siguiente" class="btn btn-info" >Siguiente</button>
+            <button type="button" id="anterior" class="btn btn-info textoBoton" >Anterior</button>
+            <button type="button" id="siguiente" class="btn btn-info textoBoton" >Siguiente</button>
           </div>
           <div>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-danger textoBoton" data-dismiss="modal">Cerrar</button>
           </div>
           
         </div>
@@ -145,9 +145,9 @@
       </div>
     </div>
   </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="./JS/jquery_2.min.js"></script>
+  <script src="./JS/popper.min.js"></script>
+  <script src="./JS/bootstrap.min.js"></script>
 <script type="text/javascript" src="./JS/SeleccionarNivel.js"></script>
 
 </body>

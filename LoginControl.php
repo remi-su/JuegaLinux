@@ -2,7 +2,7 @@
 
 function ConectarBaseDatos($sql){
 
-	$mysqli = new mysqli('127.0.0.1', 'root', '', 'proyectolinux');
+	$mysqli = new mysqli('127.0.0.1', 'root', '', 'proyecto_2');
 	if(!$mysqli){
 		return false; 
 	}
