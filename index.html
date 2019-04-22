@@ -1,42 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100 w-100">
 <head>
-	<meta charset="utf-8">
-	<title>Registro de Usuarios</title>
-	<script src="./JS/jquery.min.js" type="text/javascript" language="javascript"></script>
-	<script type="text/javascript" src="bootstrap.bundle.js"></script>
-	<link rel="stylesheet" type="text/css" href="./CSS/bootstrap.css">
-	<link rel="stylesheet" href="./CSS/login.css">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="CSS/bootstrap.css">
+  <style>
+    .element {
+			transition: 1s ease ;
+		}
+
+    .element:hover{
+      transition: 1s ease ;
+      -webkit-transform: scale(1.05) ;
+      -ms-transform: scale(1.05) ;
+      transform: scale(1.05) ;
+    }
+
+    .delay1{
+      transition-delay: 2s;
+    }
+    .delay2{
+      transition-delay: 3s;
+    }
+    .delay3{
+      transition-delay: 4s;
+    }
+    .delay4{
+      transition-delay: 5s;
+    }
+    .rows{
+      margin: 5px;
+      height: 95%;
+    }
+		.game-picture{
+      justify-content: center;
+      display: flex;
+      height: 50%;
+		}
+    .picture{
+      width: 75%;
+      height: auto;
+
+    }
+  </style>
 </head>
-<body>
+<body class="body h-100 w-100 justify-content-center align-self-center">
+	<div class="row rows" style="">
+    <div class="col-sm-6 game-picture  element ">
+    		<img class="picture" onclick="window.location='UnidadesDecenasCentenas/'" src="UnidadesDecenasCentenas/images/iceberg.png"/>
+    </div>	
+    <div class="col-sm-6 game-picture element ">
+      <img class="picture" src="gameImages/asia.png" />
+    </div>
 
-	<!--
-	<form>
-		<div>
-			Usuario : <input type="text" placeholder="Usuario" name="usuario" id="usuario"><br>
-			Contraseña : <input type="password" placeholder="contraseña" name="clave" id="clave"><br>
-			<input type="button" name="registrarse" id="registrarse" value="registrarse"><input type="button" name="IniciarSesion" id="iniciar" value="Iniciar Sesión">
-		</div>
-	</form>
+    <div class="col-sm-6 game-picture element ">
+    <img class="picture" src="gameImages/museo.png" />
+    </div>
 
-	-->
-	<div id="container">
-		<img src="logo.svg"  style="position: relative; margin-top: -31px;" width="auto" height="auto" />
-		<form class="form">
-			<div class="content">
-				<input type="email" name="email" placeholder="E-mail" id="usuario">
-				<input type="password" name="pass" placeholder="Password" id="clave">
-				<input class="btn btn-success" type="button" id="registrarse" value="Registrarse">
-				<input class="btn btn-success" type="button" id="iniciar" value="Iniciar Sesion">
-			</div>
-		</form>
-	</div>
+    <div class="col-sm-6 game-picture element ">
+      <img class="picture" src="gameImages/vegas.png"/>
+    </div>
+</div>
+	<script src="JS/jquery.min.js" type="text/javascript" language="javascript"></script>
 
 </body>
 </html>
-
-<script type="text/javascript" src="./JS/login.js"></script>

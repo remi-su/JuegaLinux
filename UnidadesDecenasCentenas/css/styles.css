@@ -4,12 +4,19 @@
 
 }
 
+
+
 div{
   word-wrap: break-word;
 }
-
+.penguin-img{
+  height: 50px !important;
+  width: 100px !important;
+}
 .body{
-  background-image: url("../../Recursos/IMG/fondo.png");
+  background-image: url("../images/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 @font-face {
   font-family: Arcade;
@@ -59,6 +66,8 @@ div{
  position: relative;
  top: 0;
  z-index: 999;
+ background-color: orange !important;
+ font-color: white !important;
  }
 
 /* custom  walking-penguin */
@@ -330,12 +339,12 @@ transform: translate(300px, 0px);
     position: absolute;
     height: 1000px;
     width: 2000px;
-
+/*
     background: -moz-linear-gradient(45deg,  #9db2ec 0%, #d8d1f2 18%, #c3d6f7 35%, #a4e1e5 52%, #98d8e1 74%, #a2ebfa 100%);
 background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#9db2ec), color-stop(18%,#d8d1f2), color-stop(35%,#c3d6f7), color-stop(52%,#a4e1e5), color-stop(74%,#98d8e1), color-stop(100%,#a2ebfa));
 background: -webkit-linear-gradient(45deg,  #9db2ec 0%,#d8d1f2 18%,#c3d6f7 35%,#a4e1e5 52%,#98d8e1 74%,#a2ebfa 100%);
+*/
 }
-
 /* end custom ground */
 
 /* custom penguin movement */
@@ -734,54 +743,54 @@ end custom penguin */
   z-index: auto;
 }
 .fish {
-  width: 45px;
-  height: 30px;
+  width: 30px;
+  height: 20px;
 
 }
 
 .fish-body {
   position: relative;
-  margin-top: 9px;
-  margin-left: 12px;
+  margin-top: 6px;
+  margin-left: 8px;
   background-color: orange;
   border-radius: 50%;
-  width: 45px; 
-  height: 30px;
+  width: 30px; 
+  height: 20px;
 }
 
 .eye {
   position: absolute;
-  margin-left: 30px;
-  margin-top: 3px;
+  margin-left: 20px;
+  margin-top: 2px;
   z-index: 1;
 
   border-radius: 50%;
-  width: 3px;
-  height: 3px;
+  width: 2px;
+  height: 2px;
 }
 
 .pupil {
   position: absolute;
   z-index: 2;
-  margin-left: 3px;
-  margin-top: 3px;
+  margin-left: 2px;
+  margin-top: 2px;
   background-color: black;
   border-radius: 50%;
-  height: 3px;
-  width: 3px;
+  height: 2px;
+  width: 2px;
 }
 
 .fin {
-  margin-top: -30px; 
+  margin-top: -20px; 
   background-color: orange;
   border-radius: 50%;
   transform: rotate(40deg);
-  width: 24px;
-  height: 15px;
+  width: 16px;
+  height: 10px;
 }
 
 .fin-bottom {
-  margin-top: -3px;
+  margin-top: -2px;
   transform: rotate(-40deg);
 }
 
@@ -1041,11 +1050,11 @@ animation-fill-mode: forwards;
   visibility: hidden;
   position: absolute;
   background: white;
-  height: 350px;
+  height: 60% !important;
   width: 80%;
   z-index: 101;
   left: 10%;
-  top: 20%;
+  top: 5%;
   padding: 15px;
   border-radius: .25em;
   display: flex;
@@ -1053,7 +1062,9 @@ animation-fill-mode: forwards;
   font-family: Rumpelstiltskin;
 
 }
-
+.title{
+  font-size: 3rem !important;
+}
 .help-title{
   flex-direction: row;
   display: flex;
@@ -1061,6 +1072,18 @@ animation-fill-mode: forwards;
 .row{
   width: 100%;
   
+}
+.next{
+  margin-left: 10px;
+}
+.help-row{
+  padding: 10px;
+  margin: 10px;
+  border-radius: .25rem;
+  background: #FFB786;
+  display: flex;
+  width: 95% !important;
+  height: 150px !important;
 }
 .row2{
   display: flex;
@@ -1102,12 +1125,9 @@ animation-fill-mode: forwards;
   margin-top: auto;
   margin-left: auto;
   margin-right: auto;
-  background: rgb(100,100,100);
-  border: none;
-  font-family: cursive;
-  height: 50px;
-  border-radius: 25%;
-  width: 150px;
+  height: 40px;
+  width: 110px;
+  color:black !important;
 }
 .option-button{
   margin: 10px;
@@ -1122,11 +1142,10 @@ animation-fill-mode: forwards;
 }
 
 .penguin-img{
-  height: 200px;
-  width: 150px;
+  height: 200px !important;
+  width: 150px !important;
 }
 .option_panel{
-  margin-top: 20%;
   justify-content: space-evenly;
   display: flex;
 }
@@ -1137,17 +1156,21 @@ animation-fill-mode: forwards;
 
 
 .control-panel{
+  /*font-family: "Rumpelstiltskin" !important;*/
   box-sizing: inherit !important;
   display: flex;
   flex-direction: column;
   background: rgba(100,100,100, 0.5);
   position: absolute;
-  width: 300px;
-  height: 300px;
+/*  width: 300px;
+  height: 300px; */
   right: 0;
   top: 10%;
   padding: 10px;
   margin: 15px;
+}
+.letras{
+  font-size: 2.5rem !important;
 }
 
 .button-option {
@@ -1155,15 +1178,15 @@ animation-fill-mode: forwards;
     background-color: #f39c12;
     border: none;
     padding: 20px;
-    width: 200px;
+    font-size: 2rem;
     text-align: center;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     text-decoration: none;
     overflow: hidden;
     border-radius: 25%;
-    width: 40px;
-    flex-grow: 1;
+    
+    
     margin: 10px;
     
     

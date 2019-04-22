@@ -9,19 +9,19 @@ function Fish(id) {
 
     this.aleatoriMovement= function (posX, actualY, direction, heigh){
         var x = posX;
-        return ((-1)*((direction)*posX)*((direction)*posX)+heigh);
+        return ((-1)*((direction)*posX)*((direction)*posX)+heigh) ;
     }
 
     this.paint_fish= function(){
         var number_color= Math.floor(Math.random() * 5);
         
         switch(number_color){
-            case 0: this.color="rgba(255,0,0,0.99)"; break;
-            case 1: this.color="rgba(0,255,0,0.99)"; break;
-            case 2: this.color="rgba(0,0,255,0.99)"; break;
-            case 3: this.color="rgba(100,100,100,0.99)"; break;
-            case 4: this.color="rgba(200,200,200,0.99)"; break;
-            default: this.color="white";
+            case 0: this.color="rgba(255,0,0,0.70)"; break;
+            case 1: this.color="rgba(0,255,0,0.70)"; break;
+            case 2: this.color="rgba(0,0,255,0.70)"; break;
+            case 3: this.color="rgba(223, 83, 171, 0.70)"; break;
+            default: this.color="rgba(255, 170, 0,0.70)"; break;
+            
         }
     }
 

@@ -8,7 +8,7 @@ var timer;
 function initCounter(){
     thread = setInterval(incrementSeconds, 1000);
     timer = document.getElementById('seconds-counter');
-    timer.innerText = "10";
+    //timer.innerText = "";
 }
 
 function incrementSeconds() {
@@ -31,38 +31,84 @@ function stopLevel() {
     clearInterval(thread);
 }
 
-function myMove(movement, fish) {
+function myMove(movement, fish, cont) {
     var posX = 0;
     var posY = 0;
+    var plus = cont/15;
     var fish_container = document.getElementById(fish.id);
     var id = setInterval(frame, 60);
+    var dire=direction();
     var iteration=0;
-    var boost=17;
     var height = Math.floor(Math.random() * 10)+70
     function frame() {
         var position = fish_container.getBoundingClientRect();
         if(fish.positionX<15){
             switch(movement){
-                case 1: fish_container.style.top = position.top - fish.aleatoriMovement(fish.positionX, position.top, direction(),height)+'px';
-                fish_container.style.left = position.left+ boost + 'px'; 
+                case 1: fish_container.style.top = position.top-plus -fish.aleatoriMovement(fish.positionX, position.top, direction(),height)-Math.floor(Math.random() * 5)+'px';
+                        fish_container.style.left = position.left +plus+ Math.floor(Math.random() * 5) + 'px'; 
                 break;
-                case 2: fish_container.style.top = position.top - fish.aleatoriMovement(fish.positionX, position.top, direction() ,height)+'px'; 
-                fish_container.style.left = position.left+movement + 10 +'px'; 
+                case 2: fish_container.style.top = position.top-plus  -fish.aleatoriMovement(fish.positionX, position.top, direction() ,height)-Math.floor(Math.random() * 10)+'px'; 
+                        fish_container.style.left = position.left+movement + 6 + Math.floor(Math.random() * 10) +'px'; 
                 break;
-                case 3: fish_container.style.top = position.top - fish.aleatoriMovement(fish.positionX, position.top, direction(),height)+'px'; 
-                fish_container.style.left = position.left+movement +20 +'px'; 
+                case 3: fish_container.style.top = position.top-plus -fish.aleatoriMovement(fish.positionX, position.top, direction(),height)-Math.floor(Math.random() * 15)+'px'; 
+                        fish_container.style.left = position.left+movement +7 + Math.floor(Math.random() * 15)+'px'; 
                 break;
-                case 4: fish_container.style.top = position.top - fish.aleatoriMovement(fish.positionX, position.top, direction(),height)+'px'; 
-                fish_container.style.left = position.left+movement + 30+'px'; 
+                case 4: fish_container.style.top = position.top-plus -fish.aleatoriMovement(fish.positionX, position.top, direction(),height)-Math.floor(Math.random() * 20)+'px'; 
+                        fish_container.style.left = position.left+movement +8 + Math.floor(Math.random() * 20)+'px'; 
                 break; 
+
+                
             }
-            
-            fish.positionX++
+            fish.positionX++;
+        }else if(fish.positionX< 25){
+            if(detectOverlap(fish.id)){
+                fish_container.style.top = position.top-dire*Math.floor(Math.random() * 15)+'px'; 
+                fish_container.style.left = position.left + dire*Math.floor(Math.random() * 15) + 'px'; 
+                fish.positionX++;
+            }
         }
     }
   }
   
 var startButton = document.getElementById("start").addEventListener("click", start_level);
+
+function detectOverlap(id){
+    var fish_container = document.getElementById(id);
+    var fish = document.getElementsByClassName('fish_container');
+    var count =fish.length;
+    var num =0;
+    for(var i=0; i< count; i++){
+        var f = document.getElementById('animated-fish'+i);
+        var position = fish_container.getBoundingClientRect();
+        var fishPosition = f.getBoundingClientRect();
+
+        if(distance(position.left, fishPosition.left, position.top, fishPosition.top) 
+            == true && num>1){
+            return true;
+        }else{
+            num++; 
+        }
+
+        
+    }
+    return false;
+
+}
+
+function distance(x,x2,y,y2){
+    var newx = (x-x2)*(x-x2);
+    var newy = (y-y2)*(y-y2);
+    var total = newx+newy;
+    var result = Math.sqrt(total);
+    if(result<100){
+       
+        return true;
+    }else{
+        
+        return false;
+    }
+    
+}
 
 function start_level(){
     hideLostPanel();
@@ -102,14 +148,24 @@ function start_level(){
 }
 
 function generate_level(){
-    for (var i; i < num_fish; i++) {
+    for (var i=0; i < num_fish; i++) {
         delete_elements('fish_container');
     }
-
     var cont=0;
     for(var i =0; i< num_fish ; i++){
-        generateFish(i);
+        generateFish(cont);
+        cont++;
     }
+    for (var i=0; i < num_medium_bags; i++) {
+        generateMediumBag(cont);
+        cont++;
+
+    }
+    for (var i=0; i < num_big_bags; i++) {
+        generateBigBag(cont);
+        cont++;
+    }
+
 }
 
 function disable(){
@@ -119,14 +175,16 @@ function disable(){
 function generateOptionPanel(){
     var window = document.getElementById('panel-container');
     window.innerHTML = "<div id='control-panel' class='control-panel'>"+
-                        "<h3> ¡Rapido!,  dile  a  pingu  cuantos  pescados <br> tiene,  antes  de  que  se  escapen </h3> "+
+                        "<h3 style='font-size: 2.5
+                        rem !important'> ¡Rápido!," + question + "  </h3> "+
                         "<div id='option-panel' class='option_panel'>" +
-                        "<button id='option_a' class='button-option button-type'></button>" +
-                        "<button id='option_b' class='button-option button-type'></button>" +
-                        "<button id='option_c' class='button-option button-type'></button>" +
+                        "<button id='option_a' value='1' class='button-option button-type'></button>" +
+                        "<button id='option_b' value='2' class='button-option button-type'></button>" +
+                        "<button id='option_c' value='3' class='button-option button-type'></button>" +
                         "</div>" +
                         "</div>";
     window.style.visibility='visible';
+
     var boton = document.getElementById('option_a');
     boton.addEventListener('click', check_answer);
     boton.innerHTML= answer_a;
@@ -151,10 +209,20 @@ function hideLostPanel(){
 }
 
 function check_answer(){
+    
     var boton = this;
-    var answer = boton.innerHTML;
+    var answer_selected = boton.value;
     stopLevel();
-    if(num_fish == answer && fish_still_there && actual_phase <5){
+    var window = document.getElementById('panel-container');
+    window.style.visibility ="hidden";
+
+    if(actual_phase >3){
+        var points = document.getElementById("points").innerHTML;
+        addPoints();
+        window.location = "winPage.html?points="+ points;
+    }
+
+    if(answer_selected == value && fish_still_there && actual_phase <4){
         addPoints();
 
         var div = document.getElementById('winner');
@@ -162,15 +230,17 @@ function check_answer(){
 
         setTimeout( next_level, 3000);
 
-    }else if(actual_phase<5){
+    }else if(actual_phase<4 ){
         
         generateLostPanel();
-        setTimeout( next_level, 3000);
+        setTimeout( next_level, 60000);
         
     }else{
-        window.location = "level-selection.html";
+        call();
     }
 }
+
+
 
 function win(){
 
@@ -186,7 +256,22 @@ function next_level(){
     start_level();
 }
 
-function generateFish(cont){
+function generateBigBag(cont){
+    var movement = 0;
+    var fish= new Fish('animated-fish'+cont);
+    fish.paint_fish();
+    var fish_container = document.createElement("div");
+    fish_container.className = "fish_container";
+    fish_container.innerHTML=
+                "<div id='animated-fish"+cont +"' class='fish-container' "+
+                "style='z-index:9; left: 524px;'>"+
+                "<img class='big_bag' height='50px' width='75px' src='images/saco2.png'>"+
+                "</div>";
+    document.body.appendChild(fish_container);
+    var movement= Math.floor(Math.random() * 3) + 2;
+    myMove(movement, fish, cont);
+}
+function generateMediumBag(cont){
     var movement = 0;
     var fish= new Fish('animated-fish'+cont);
     fish.paint_fish();
@@ -195,14 +280,28 @@ function generateFish(cont){
     fish_container.innerHTML=
                 "<div id='animated-fish"+cont +"' class='fish-container' "+
                 "style='z-index:10; left: 524px;'>"+
+                "<img class='big_bag' height='40px' width='50px' src='images/saco1.png'>"+
+                "</div>";
+    document.body.appendChild(fish_container);
+    var movement= Math.floor(Math.random() * 4) + 1;
+    myMove(movement, fish, cont);
+
+}
+function generateFish(cont){
+    var movement = 0;
+    var fish= new Fish('animated-fish'+cont);
+    fish.paint_fish();
+    var fish_container = document.createElement("div");
+    fish_container.className = "fish_container";
+    fish_container.innerHTML=
+                "<div id='animated-fish"+cont +"' class='fish-container' "+
+                "style='z-index:12; left: 524px;'>"+
                 "<div class='fish element'><div class='fish-body' style='background:"+ fish.color +";' ><div class='eye'><div class='pupil'></div></div></div><div class='fin' style='background:"+ fish.color +";'></div><div class='fin fin-bottom' style='background:"+ fish.color +";'>"+
                 "</div></div></div>";
                 document.body.appendChild(fish_container);
     var movement= Math.floor(Math.random() * 4) + 1;
-    myMove(movement, fish);
-
+    myMove(movement, fish, cont);
 }
-
 function delete_elements(class_name){
         var elements = document.getElementsByClassName(class_name);
         if(elements != null){
@@ -212,10 +311,7 @@ function delete_elements(class_name){
             }
         }
 }
-
 function delete_elements_by_id(class_name){
-        //var elements = document.getElementById(class_name);
-        //elements.parentNode.innerHTML = "";
     var parent = document.getElementById("body");
     var child = document.getElementsByClassName("fish_container");
     parent.removeChild(child);
@@ -227,6 +323,7 @@ function direction(){
 
 function penguin_state(state){
     var penguin = document.getElementById("penguin-img");
+
     switch(state){
         case 0: penguin.src="images/p1.png"; break;
         case 1: penguin.src="images/p2.png"; break;
@@ -249,17 +346,15 @@ function move_fish(){
         var element_id = 'animated-fish' + i;       
         move_one_fish(element_id);   
     }
-    fishEscaped();
-    
+    fishEscaped(); 
 }
 
 function fishEscaped(){
     generateLostPanel();
-    setTimeout( next_level, 3000);
+    setTimeout( next_level, 60000);
 }
 
 function move_one_fish(html_object_id){
-          
     var id = setInterval(frame, 50);
     var fish;
     var fish_container;
@@ -278,9 +373,9 @@ function move_one_fish(html_object_id){
 function addPoints(){
     var points = document.getElementById("points");
     var actualPoints = parseInt(points.innerHTML);
-    var totalPoints
+    var totalPoints;
     if(actualPoints == 0){
-        totalPoints = seconds * 1000;
+        totalPoints = seconds * 2;
     }else{
         totalPoints = actualPoints * seconds;
     }
