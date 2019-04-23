@@ -14,8 +14,45 @@ function ConectarBaseDatos($sql){
 
 }
 
-function agregarAlumnoSistema(){
+function obtenerInformacionAlumnos(){
+	$data['numeroEstudiantes'] = obtenerNumeroTotalAlumnos();
+	$data['cantidadGrupos'] = obtenerNumeroGrupos();
+	$data['cantidadGrupo1'] = obtenerNumeroTotalAlumnosGrupo(1);
+	$data['cantidadGrupo2'] = obtenerNumeroTotalAlumnosGrupo(2);
 
+	return json_encode($data);
+}
+
+function obtenerNumeroTotalAlumnos(){
+	$sql = "SELECT count(idAlumno) as value from alumnos";
+	$resultado = ConectarBaseDatos($sql);
+	return $resultado->fetch_array(MYSQLI_ASSOC)['value'];
+}
+
+
+function obtenerNumeroTotalAlumnosGrupo($grupo){
+	$sql = "SELECT count(idAlumno) as value from alumnos where idGrupo=$grupo";
+	$resultado = ConectarBaseDatos($sql);
+	return $resultado->fetch_array(MYSQLI_ASSOC)['value'];
+}
+
+function obtenerNumeroGrupos(){
+	$sql = "SELECT count(idGrupo) as value from grupos";
+	$resultado = ConectarBaseDatos($sql);
+	return $resultado->fetch_array(MYSQLI_ASSOC)['value'];
+}
+
+function crearFolder($estructura){
+	if(!mkdir($estructura, 0777, true)) {
+	    die('Fallo al crear las carpetas...');
+	}
+}
+
+function agregarImagen(){
+
+}
+
+function agregarAlumnoSistema(){
 	$idGrupo = $_POST["idGrupo"];
 	$nombreAlumno = $_POST["nombreAlumno"];
 	$apellidoAlumno = $_POST["apellidoAlumno"];
@@ -132,13 +169,22 @@ function obtenerAlumnos(){
 }
 
 
+
+
+
+
 if(isset($_POST['tipo']) && !empty($_POST['tipo'])) {
 	$action = $_POST['tipo'];
+
 	switch($action) {
 		case "crearAlumno" : echo agregarAlumnoSistema(); break;
+		case "agregarImagen": echo agregarImagen(); break;
 		case "obtenerAlumnos" : echo obtenerAlumnos(); break;
 		case "deshabilitarAlumno" : echo deshabilitarAlumnoSistema(); break;
 		case "modificarAlumno" : echo modificarAlumno(); break;
 		case "activarAlumno" : echo activarAlumno(); break;
+		case "obtenerNumeroAlumnos" : echo obtenerInformacionAlumnos() ;break;
 	}
 }
+
+

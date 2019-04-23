@@ -54,8 +54,13 @@ $(document).ready(function(){
 			var idGrupo = $("#listaGrupos option:selected").val();
 			var nombreAlumno = $("#nombreAlumno").val();
 			var apellidoAlumno = $("#apellidoAlumno").val();
+
+
 			$.ajax({ url: './AlumnoServicio.php',
-				data: {tipo: "crearAlumno", idGrupo: idGrupo, nombreAlumno: nombreAlumno, apellidoAlumno: apellidoAlumno},
+				data: {tipo: "crearAlumno", idGrupo: idGrupo, 
+											nombreAlumno: nombreAlumno, 
+											apellidoAlumno: apellidoAlumno,	
+										},
 				type: 'post',
 				success: function(output) {
 					alert(output);

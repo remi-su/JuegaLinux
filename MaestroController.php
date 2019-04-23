@@ -15,6 +15,7 @@ if(isset($_POST['tipo']) && !empty($_POST['tipo'])) {
 		case "obtenerTipoActividades": echo obtenerTipoActividades(); break;
 		case "crearActividadDetalle" : echo crearActividad(); break;
 		case "crearActividadUnidades" : echo crearActividadUnidades(); break;
+	
 		case "cargarPalabra" : echo cargarPalabrasSopaLetras(); break;
 	}
 }

@@ -9,29 +9,30 @@
 	height: 150px;
 	background-color: white;
 }
-.body {
-	background-color: #d5cdcb;
-}
 .presentacion{
 	margin-top: 25px;
 	margin-bottom: 20px;
 	text-align: center;
 }
-.card-body{
-	height: 200px;
-	border-radius: 5px;
-	background: #343a408a;
-	box-shadow: 1px 1px 30px #000;
+.container{
+	display: flex;
+	flex-wrap: wrap;
+}
+.card{
+	margin: 5px;
+	flex-grow: 1;
+	max-width: 50%;
 }
 
+/*
 .zoom {
     transition: transform .2s;
     margin: 0 auto;
 }
 
 .zoom:hover {
-    -ms-transform: scale(1.2); /* IE 9 */
-    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    -ms-transform: scale(1.2); 
+    -webkit-transform: scale(1.2); 
     transform: scale(1.2);
     z-index: 100; 
-}
+}*/

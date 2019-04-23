@@ -9,9 +9,36 @@ function ConectarBaseDatos($sql){
 	else{
 		$resultado = $mysqli->query($sql);
 		$mysqli->close();
-		return $resultado;               
+		return $resultado; 
+
 	}
 
+}
+
+function obtenerNumeroActividades(){
+	$sql = "SELECT COUNT(idActividad ) as value FROM actividadalumno";
+	$resultado = ConectarBaseDatos($sql);
+	
+
+	$data['numeroActividades'] = $resultado->fetch_array(MYSQLI_ASSOC)['value'];
+	$data['numeroActividadesEspanol'] =obtenerNumeroActividadesEspañol();
+	$data['numeroActividadesMatematicas'] = obtenerNumeroActividadesMatematicas();
+
+	return json_encode($data);
+}
+
+function obtenerNumeroActividadesEspañol(){
+	$sql = "SELECT COUNT(idAreaActividad ) as value FROM actividades where 
+	idAreaActividad=1";
+	$resultado = ConectarBaseDatos($sql);
+	return $resultado->fetch_array(MYSQLI_ASSOC)['value'];
+}
+
+function obtenerNumeroActividadesMatematicas(){
+	$sql = "SELECT COUNT(idAreaActividad ) as value FROM actividades where 
+	idAreaActividad=2";
+	$resultado = ConectarBaseDatos($sql);
+	return $resultado->fetch_array(MYSQLI_ASSOC)['value'];
 }
 
 function obtenerTiposActividades(){
@@ -154,5 +181,6 @@ if(isset($_POST['tipo']) && !empty($_POST['tipo'])) {
 	switch($action) {
 		case "reporteIndividual" : echo obtenerReporteIndividual(); break;
 		case "reporteGrupal" : echo obtenerReporteGrupal(); break;
+		case "obtenerNumeroActividadesRealizadas": echo obtenerNumeroActividades(); break;
 	}
 }
