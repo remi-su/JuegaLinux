@@ -1,7 +1,7 @@
 <?php
 function ConectarBaseDatos($sql){
 
-	$mysqli = new mysqli('127.0.0.1', 'root', '', 'foro');
+	$mysqli = new mysqli('127.0.0.1', 'root', '', '');
 	if(!$mysqli){
 		return false; 
 	}
@@ -10,12 +10,11 @@ function ConectarBaseDatos($sql){
 		$mysqli->close();
 		return $resultado;               
 	}
-
 }
 
+// no lo termino para que no borren la base de datos
 
-
-$dbName = "foro";
+$dbName = "";
 $result_t = ConectarBaseDatos("SHOW TABLES");
 while($row = $result_t->fetch_array(MYSQLI_ASSOC))
 {

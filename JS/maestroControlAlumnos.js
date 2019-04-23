@@ -94,6 +94,7 @@ $(document).ready(function(){
 
 				var listaGrupos = JSON.parse(output);
 				var htmlListas = "<option value = '0'> Seleccione Grupo </option>";
+
 				for (var i = 0; i < listaGrupos.lista.length; i++) {
 					htmlListas += "<option value=\""+listaGrupos.lista[i].idGrupo+"\"> Grado: "+listaGrupos.lista[i].grado+" Grupo: "+ listaGrupos.lista[i].grupo +"</option>";
 				}
@@ -102,6 +103,25 @@ $(document).ready(function(){
 				$("#listaModificarGrupos").append(htmlListas);
 			}
 		});
+	}
+
+	function generarTablaAlumnos(){
+		$.ajax({ url: './AlumnoServicio.php',
+			data: {tipo: "obtenerTodosAlumnos", estado: 1},
+			type: 'post',
+			success: function(output) {
+
+				var listaAlumnos = JSON.parse(output);
+				var tabla = $('#tabla');
+				alert(tabla.html());
+				var htmlListas=tabla.html();
+				for (var i = 0; i < listaAlumnos.lista.length; i++) {
+					htmlListas =htmlListas+ "<tr><th>"+listaAlumnos.lista[i].idAlumno+" </th><th> "+ listaAlumnos.lista[i].nombreAlumno +"</th><th>"+ listaAlumnos.lista[i].apellidoAlumno+ " </th><th><button>Generar reporte de alumno</button></th></tr>";
+				}
+				tabla.html(htmlListas);
+			}
+		});
+
 	}
 
 	function obtenerAlumno(listaACambiar,listaGrupo){
@@ -129,7 +149,7 @@ $(document).ready(function(){
 	$("#listaModificarGrupos").change(function(){
 		obtenerAlumno("#listaAlumnosAModificar", "#listaModificarGrupos");
 	});
-
+	generarTablaAlumnos();
 	obtenerGrupos();
 	verificarInicioSesion();
 });

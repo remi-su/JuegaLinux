@@ -168,7 +168,26 @@ function obtenerAlumnos(){
 	}
 }
 
+function obtenerTodosAlumnos(){
 
+	$estado = $_POST["estado"];
+	$listaString = '{"lista":[';
+
+		$sql = "SELECT * FROM alumnos WHERE estado = $estado";
+		$resultado = ConectarBaseDatos($sql);
+		$numeroElementos = $resultado->num_rows;
+		for ($i=0; $i < $numeroElementos; $i++) {
+			$fila =  $resultado->fetch_array(MYSQLI_ASSOC);
+			$idAlumno = $fila["idAlumno"];
+			$nombreAlumno = $fila["nombreAlumno"];
+			$apellidoAlumno = $fila["apellidoAlumno"];
+			$listaString .='{'.'"idAlumno":'.'"'.$idAlumno.'",'.'"nombreAlumno":'.'"'.$nombreAlumno.'",'.'"apellidoAlumno":'.'"'.$apellidoAlumno.'"}';
+			if ($i < $numeroElementos - 1){
+				$listaString .= ",";
+			}
+		}
+		return $listaString."]}";
+}
 
 
 
@@ -180,6 +199,7 @@ if(isset($_POST['tipo']) && !empty($_POST['tipo'])) {
 		case "crearAlumno" : echo agregarAlumnoSistema(); break;
 		case "agregarImagen": echo agregarImagen(); break;
 		case "obtenerAlumnos" : echo obtenerAlumnos(); break;
+		case "obtenerTodosAlumnos" : echo obtenerTodosAlumnos(); break;
 		case "deshabilitarAlumno" : echo deshabilitarAlumnoSistema(); break;
 		case "modificarAlumno" : echo modificarAlumno(); break;
 		case "activarAlumno" : echo activarAlumno(); break;

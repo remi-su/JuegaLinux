@@ -24,6 +24,13 @@
 	max-width: 50%;
 }
 
+.tab-pane{
+	padding: 20px;
+}
+
+.nav-item{
+	flex-grow: 1;
+}
 /*
 .zoom {
     transition: transform .2s;
