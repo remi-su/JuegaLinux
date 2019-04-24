@@ -17,16 +17,7 @@
 	</div>
 
 	<div class="container">
-			<div class="card">
-		<div class="card-header"> Actividades </div>
-			 <div class="card-body">
-    			<h5 class="card-title"> Lista de juegos disponibles</h5>
-    			<div>
-    				<ul id="actividades-disponibles">
-    				</ul>
-    			</div>
-  		</div>
-	</div>
+
 		<div class="card">
 			<div class="card-header"> Información de actividades </div>
 			 <div class="card-body">
@@ -90,23 +81,28 @@
     			</p>	
   			</div>
 	</div>
-
-
-
-	
-	<div class="card">
+<div class="card contenedor-cartas-pequeñas">
+	<div class="">
 		<div class="card-header"> Configuracion de la base de datos </div>
 			 <div class="card-body">
     			<h5 class="card-title">Opciones</h5>
     			<div>
     				<button type="button" id="respaldar" class="btn btn-success">Respaldar base de datos</button>
     				<button type="button" id="formatear" class="btn btn-danger">Formatear base de datos</button>
-    			</div>
-    			
+    			</div>	
   			</div>
 	</div>
-
-	
+  <div class="">
+    <div class="card-header"> Actividades </div>
+       <div class="card-body">
+          <h5 class="card-title"> Lista de juegos disponibles</h5>
+          <div>
+            <ul id="actividades-disponibles">
+            </ul>
+          </div>
+      </div>
+  </div>
+</div>
 </div>
 </body>
 </html>

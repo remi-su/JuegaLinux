@@ -32,25 +32,16 @@
 <!-- Tab panes -->
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane  in active" id="ConsultarGrupos">
-  	<table class="table table-bordered table-striped table-hover" id="tabla-grupos">
- 
+  	<table class="table table-bordered table-striped table-hover" id="tabla-grupos"> 
   <thead>
- 
     <tr>
- 
       <th>Grado</th>
- 
       <th>Grupo</th>
- 
       <th>Opciones</th>
- 
     </tr>
- 
   </thead>
- 
   <tbody id="tabla">
   </tbody>
- 
 </table>
   </div>
   <div role="tabpanel" class="tab-pane " id="CrearGrupo">
@@ -135,13 +126,8 @@
   </div>
 </div>
 	<div class="container"><!--Inicio de Formulario-->
-
 		<hr>
-
-
 		<hr>
-
-
 	</div> <!--Fin de Formulario-->
 
 	<!--<p>Crear Grupo</p>

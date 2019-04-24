@@ -93,7 +93,6 @@ function obtenerReporteGrupal(){
 
 	$reporteGrupalJSON = '{"calificacionGrupal":'.$calificacionGrupal.', "listaAlumnos":'.$listaAlumnosJSON.', "porcentajeAvance":'. $porcentajeAvance.'}';
 	return $reporteGrupalJSON;
-
 }
 
 function obtenerReporteIndividual(){
@@ -182,5 +181,6 @@ if(isset($_POST['tipo']) && !empty($_POST['tipo'])) {
 		case "reporteIndividual" : echo obtenerReporteIndividual(); break;
 		case "reporteGrupal" : echo obtenerReporteGrupal(); break;
 		case "obtenerNumeroActividadesRealizadas": echo obtenerNumeroActividades(); break;
+		case "obtenerTiposActividades": echo obtenerTiposActividades();
 	}
 }

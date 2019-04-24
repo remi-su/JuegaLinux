@@ -14,7 +14,7 @@ function ConectarBaseDatos($sql){
 
 }
 
-function obtenerInformacionAlumnos(){
+function obtenerInformacionGeneralAlumnos(){
 	$data['numeroEstudiantes'] = obtenerNumeroTotalAlumnos();
 	$data['cantidadGrupos'] = obtenerNumeroGrupos();
 	$data['cantidadGrupo1'] = obtenerNumeroTotalAlumnosGrupo(1);
@@ -179,13 +179,15 @@ function obtenerTodosAlumnos(){
 		for ($i=0; $i < $numeroElementos; $i++) {
 			$fila =  $resultado->fetch_array(MYSQLI_ASSOC);
 			$idAlumno = $fila["idAlumno"];
+			$idGrupo = $fila['idGrupo'];
 			$nombreAlumno = $fila["nombreAlumno"];
 			$apellidoAlumno = $fila["apellidoAlumno"];
-			$listaString .='{'.'"idAlumno":'.'"'.$idAlumno.'",'.'"nombreAlumno":'.'"'.$nombreAlumno.'",'.'"apellidoAlumno":'.'"'.$apellidoAlumno.'"}';
+			$listaString .='{'.'"idAlumno":'.'"'.$idAlumno.'",'.'"idGrupo":'.$idGrupo.','.'"nombreAlumno":'.'"'.$nombreAlumno.'",'.'"apellidoAlumno":'.'"'.$apellidoAlumno.'"}';
 			if ($i < $numeroElementos - 1){
 				$listaString .= ",";
 			}
 		}
+
 		return $listaString."]}";
 }
 
@@ -203,7 +205,7 @@ if(isset($_POST['tipo']) && !empty($_POST['tipo'])) {
 		case "deshabilitarAlumno" : echo deshabilitarAlumnoSistema(); break;
 		case "modificarAlumno" : echo modificarAlumno(); break;
 		case "activarAlumno" : echo activarAlumno(); break;
-		case "obtenerNumeroAlumnos" : echo obtenerInformacionAlumnos() ;break;
+		case "obtenerNumeroAlumnos" : echo obtenerInformacionGeneralAlumnos() ;break;
 	}
 }
 

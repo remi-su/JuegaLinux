@@ -37,6 +37,7 @@
   <thead>
     <tr>
       	<th>Identificador</th>
+      	
       	<th>Nombre</th>
  		<th>Apellido</th>
       	<th>Opciones</th> 

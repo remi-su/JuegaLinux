@@ -110,18 +110,25 @@ $(document).ready(function(){
 			data: {tipo: "obtenerTodosAlumnos", estado: 1},
 			type: 'post',
 			success: function(output) {
-
+				
 				var listaAlumnos = JSON.parse(output);
 				var tabla = $('#tabla');
-				alert(tabla.html());
+			
 				var htmlListas=tabla.html();
 				for (var i = 0; i < listaAlumnos.lista.length; i++) {
-					htmlListas =htmlListas+ "<tr><th>"+listaAlumnos.lista[i].idAlumno+" </th><th> "+ listaAlumnos.lista[i].nombreAlumno +"</th><th>"+ listaAlumnos.lista[i].apellidoAlumno+ " </th><th><button>Generar reporte de alumno</button></th></tr>";
+					htmlListas =htmlListas+ "<tr><th>"+listaAlumnos.lista[i].idAlumno+" </th><th> "+ listaAlumnos.lista[i].nombreAlumno +"</th><th>"+ listaAlumnos.lista[i].apellidoAlumno+ " </th><th><button class='action-button' grupoId=" + listaAlumnos.lista[i].idGrupo +" id=" +listaAlumnos.lista[i].idAlumno + " value='" +listaAlumnos.lista[i].idAlumno + "'>Generar reporte de alumno</button></th></tr>";
 				}
 				tabla.html(htmlListas);
 			}
 		});
-
+		$("#tabla").on('click','button[class=action-button]',function(){
+			var idAlumno =$(this).attr('value');
+			var idGrupo = $(this).attr('grupoId');
+			window.localStorage.setItem('idAlumno', idAlumno);
+			window.localStorage.setItem('idGrupo', idGrupo);
+			 window.location = "reportes/reporteIndividual.php"
+			//alert(window.localStorage.getItem('idAlumno'));
+		});
 	}
 
 	function obtenerAlumno(listaACambiar,listaGrupo){
@@ -152,4 +159,14 @@ $(document).ready(function(){
 	generarTablaAlumnos();
 	obtenerGrupos();
 	verificarInicioSesion();
+
+
+
+
+
+
+
 });
+
+
+
