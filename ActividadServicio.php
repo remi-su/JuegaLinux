@@ -66,7 +66,7 @@ function obtenerTiposActividades(){
 }
 
 function obtenerReporteGrupal(){
-	$idTipoActividad = $_POST["idTipoActividad"];
+	
 	$listaAlumnos = obtenerAlumnosGrupo($_POST["idGrupo"]);
 	$fechaInicio = date($_POST["fechaInicio"]); //La fecha tiene que estar en formato d-m-y
 	$fechaFin = date("d-m-Y",strtotime($fechaInicio."+ 1 week"));
@@ -96,7 +96,7 @@ function obtenerReporteGrupal(){
 }
 
 function obtenerReporteIndividual(){
-	$idTipoActividad = $_POST["idTipoActividad"];
+	
 	$listaAlumnos = obtenerAlumnosGrupo($_POST["idGrupo"]);
 	$idAlumnoSeleccionado  = $_POST["idAlumnoSeleccionado"];
 	$fechaInicio = date($_POST["fechaInicio"]); //La fecha tiene que estar en formato d-m-y
