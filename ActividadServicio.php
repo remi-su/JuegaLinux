@@ -65,10 +65,35 @@ function obtenerTiposActividades(){
 	return "[]";
 }
 
-function obtenerReporteGrupal($idTipoActividad){
+function obtenerReporteGrupal(){
+	$sql = "SELECT DISTINCT idTipoActividad FROM `actividades` WHERE 1";
+	$resultado = ConectarBaseDatos($sql);
+
+	if ($resultado->num_rows > 0){
+		$numeroActividades = $resultado->num_rows;
+		$listaActividades = "[";
+		for ($i=0; $i < $numeroActividades; $i++) { 
+			$fila =  $resultado->fetch_array(MYSQLI_ASSOC);
+			$sql = "SELECT * FROM tipoactividad WHERE idTipoActividad =".$fila["idTipoActividad"];
+			$resultado_2 = ConectarBaseDatos($sql);
+			$fila =  $resultado_2->fetch_array(MYSQLI_ASSOC);
+			$idTipoActividad = $fila["idTipoActividad"];
+			$nombreTipo = $fila["nombreTipo"];
+			$listaActividades .= '{'.'"NombreActividad":'.'"'.$nombreTipo.'", "ReporteActividad": '.obtenerReporteGrupalA($idTipoActividad).'}';
+			if ($i < $numeroActividades - 1){
+				$listaActividades .= ",";
+			}
+		}
+		return $listaActividades."]";
+	}
+	return "[]";
+}
+
+function obtenerReporteGrupalA($idTipoActividad){
 	$listaAlumnos = obtenerAlumnosGrupo($_POST["idGrupo"]);
 	$fechaInicio = date($_POST["fechaInicio"]); //La fecha tiene que estar en formato d-m-y
 	$fechaFin = date("d-m-Y",strtotime($fechaInicio."+ 1 week"));
+	$fechaInicio = date("d-m-Y",strtotime($fechaFin."- 1 week"));
 	$semanaAnterior = date("d-m-Y",strtotime($fechaInicio."- 1 week"));
 
 	$calificacionesAlumnos = array();

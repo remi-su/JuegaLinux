@@ -4,7 +4,7 @@
 		var idAlumno = 2;
 		window.localStorage.getItem('idAlumno');
 		$.ajax({ url: '../ActividadServicio.php',
-			data: {tipo: "reporteIndividual", fechaInicio: fechaInicial, idAlumno: idAlumno, idGrupo:idGrupo},
+			data: {tipo: "reporteGrupal", fechaInicio: fechaInicial, idGrupo:idGrupo},
 			type: 'post',
 			success: function(output) {
 				console.log(output);	
