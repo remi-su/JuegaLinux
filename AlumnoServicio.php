@@ -49,7 +49,27 @@ function crearFolder($estructura){
 }
 
 function agregarImagen(){
+	$idGrupo = $_POST["idGrupo"];
+	if (!!empty($_FILES['file']['name'])){
+		$uploadedFile = '';
+	    if(!empty($_FILES["file"]["type"])){
+	        $fileName = $_FILES['file']['name'];
+	        $valid_extensions = array("jpeg", "jpg", "png");
+	        $temporary = explode(".", $_FILES["file"]["name"]);
+	        $file_extension = end($temporary);
+	        if((($_FILES["hard_file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/jpeg")) && in_array($file_extension, $valid_extensions)){
+	            $sourcePath = $_FILES['file']['tmp_name'];
 
+	            if (file_exists($_SERVER['DOCUMENT_ROOT']."Recursos/FotosAlumnos/".$idGrupo)){
+	            	crearFolder($_SERVER['DOCUMENT_ROOT']."Recursos/FotosAlumnos/".$idGrupo);
+	            }
+	            $targetPath = $_SERVER['DOCUMENT_ROOT']."Recursos/FotosAlumnos/".$idGrupo."/".$fileName;
+	            if(move_uploaded_file($sourcePath,$targetPath)){
+	                $uploadedFile = $fileName;
+	            }
+	        }
+	    }
+	}
 }
 
 function agregarAlumnoSistema(){

@@ -81,7 +81,7 @@
 			</div>
 			<div class="col">
 				<div class="input-group mb-3">
-					<button class="btn"> asdasd</button>
+					<button class="btn" id="generar"> Generar Reporte</button>
 				</div>
 			</div>
 		</div>
@@ -90,4 +90,4 @@
 
 	<script type="text/javascript" src="../JS/controladorReporteIndividual.js"></script>
 </body>
-</html>
+</html> 
