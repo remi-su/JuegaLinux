@@ -6,11 +6,18 @@
 	<script type="text/javascript" src="../JS/chart.js"></script>
 	<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
 	<style>
-		.rightDate{
-			margin-right: auto;
+		.date-container{
+			margin: 5px; 
+			flex-grow: 1;
+		}.all{
+			flex-grow: 1;
 		}
-		.leftDate{
-			margin-left: auto;
+		
+		.grafica{
+			margin: auto;
+		}
+		.button-container{
+			margin: 5px;
 		}
 
 		.firstRow{
@@ -18,6 +25,15 @@
 		}
 		.label{
 			margin: 5px;
+		}
+		.card{
+			margin: 10px;
+		}
+		.card-row{
+			width: 100%;
+		}
+		.card-container{
+			display: flex;
 		}
 	</style>
 </head>
@@ -49,7 +65,7 @@
 	</nav><!-- Fin de navBar -->
 	<div class="container">
 		<div class="row firstRow">
-			<div class="col">
+			<div class="date-container">
 				<div class="input-group mb-3">
 					 <label class="label" for="fecha-inicial">Fecha inicial</label>
 					<input type="date"
@@ -61,33 +77,75 @@
 					id="fecha-inicial" >
 				</div>
 			</div>
-			<div class="col">
+
+		
+			<div class="button-container">
 				<div class="input-group mb-3">
-					<label class="label" for="fecha-final">Fecha final</label>
-					<input type="date"
-					class="form-control"
-					placeholder="fecha-final"
-					aria-describedby="basic-addon1"
-					name="fecha-final"
-					id="fecha-final" >
+					<button id="generar-reporte" class="btn"> Generar reporte</button>
 				</div>
 			</div>
-
 		</div>
+	
+	<div class="row">
+		<div class="card all">
+			<canvas id="grafica-promedios" class="grafica" width="400" height="400"></canvas>
+		</div>
+		<div class="card all">
+			<canvas id="grafica-comparacion" class="grafica" width="400" height="400"></canvas>
+		</div>
+	</div>
+	<div class="row ">
+		<div class="card card-row">
+			<div class="card-header">Información general del alumno</div>
+			<div class="card-body card-container">
+				<div class="card all">
+					<div class="card-header">Porcentaje de avance contra la semana anterior</div>
 
-		<div class="row">
-			<div class="col">
-
-			</div>
-			<div class="col">
-				<div class="input-group mb-3">
-					<button class="btn" id="generar"> Generar Reporte</button>
+					<div class="card-body">
+						<span>El porcentaje de mejora en el estudiante esta semana fue de </span>
+						<table class="table table-bordered table-striped table-hover" id="tabla-grupos">
+						  <thead>
+						    <tr>
+						      	<th>Nombre de actividad</th>
+						      	
+						      	<th>porcentaje de avance</th>
+						    </tr>
+						  </thead>
+						 
+						  <tbody id="tabla-avance">
+						  </tbody>
+						 
+						</table>
+					</div>
 				</div>
+				<div class="card all">
+					<div class="card-header">Actividades con mayor dificultad para el alumno (puntaje menor a 70%)</div>
+
+					<div class="card-body">
+						<table class="table table-bordered table-striped table-hover" id="tabla-grupos">
+						 
+						  <thead>
+						    <tr>
+						      	<th>Nombre de actividad</th>
+						      	
+						      	<th>Calificación</th>
+						    </tr>
+						  </thead>
+						 
+						  <tbody id="tabla">
+						  </tbody>
+						 
+						</table>
+					</div>
+				</div>
+
+
 			</div>
 		</div>
 	</div>
+	</div>
 
-
+	</div>
 	<script type="text/javascript" src="../JS/controladorReporteIndividual.js"></script>
 </body>
-</html> 
+</html>
