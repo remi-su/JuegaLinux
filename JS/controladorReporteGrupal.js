@@ -9,9 +9,9 @@
 			type: 'post',
 			success: function(output) {
 				
-				var prueba = "[{ \"NombreActividad\": \"UnidadesDecenas\", \"ReporteActividad\": { \"calificacionGrupal\": 29, \"listaALumnos\": [ { \"nombre\":\"Samuel Ake\", \"calificacion\": 87.5 }, { \"nombre\":\"Alumno2\", \"calificacion\": 90.5 }, { \"nombre\":\"Alumno3\", \"calificacion\": 45.5 } ], \"porcentajeAvance\":3.12 } }, { \"NombreActividad\": \"SopaLetras\", \"ReporteActividad\": { \"calificacionGrupal\": 29.1667, \"listaALumnos\": [ { \"nombre\":\"Samuel Ake\", \"calificacion\": 87.5 }, { \"nombre\":\"Alumno2\", \"calificacion\": 90.5 }, { \"nombre\":\"Alumno3\", \"calificacion\": 45.5 } ], \"porcentajeAvance\":3.212 } }]";
+				//var prueba = "[{ \"NombreActividad\": \"UnidadesDecenas\", \"ReporteActividad\": { \"calificacionGrupal\": 29, \"listaALumnos\": [ { \"nombre\":\"Samuel Ake\", \"calificacion\": 87.5 }, { \"nombre\":\"Alumno2\", \"calificacion\": 90.5 }, { \"nombre\":\"Alumno3\", \"calificacion\": 45.5 } ], \"porcentajeAvance\":3.12 } }, { \"NombreActividad\": \"SopaLetras\", \"ReporteActividad\": { \"calificacionGrupal\": 29.1667, \"listaALumnos\": [ { \"nombre\":\"Samuel Ake\", \"calificacion\": 87.5 }, { \"nombre\":\"Alumno2\", \"calificacion\": 90.5 }, { \"nombre\":\"Alumno3\", \"calificacion\": 45.5 } ], \"porcentajeAvance\":3.212 } }]";
 				//alert(prueba);
-				var array =JSON.parse(prueba);
+				var array =JSON.parse(output);
 				//var as1 = as[0];
 				generarGraficas(array);
 			}
