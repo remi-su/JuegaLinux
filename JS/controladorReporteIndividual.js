@@ -15,6 +15,9 @@
 				//var prueba = "[{\"NombreActividad\":\"UnidadesDecenas\", \"ReporteActividad\": { \"calificacionPromedioAlumno\":50, \"promedioGrupal\":75, \"porcentajeAvance\":20, \"alumnoMasAlto\": \"Jorge2\", \"calificacionMasAlta\":90, \"alumnoMasBajo\" : \"Samuel Ake\", \"calificacionMasBaja\":20 }}, { \"NombreActividad\":\"SopaLetras\", \"ReporteActividad\": { \"calificacionPromedioAlumno\":50, \"promedioGrupal\":76, \"porcentajeAvance\":23, \"alumnoMasAlto\": \"Jorge\", \"calificacionMasAlta\":100, \"alumnoMasBajo\" : \"Samuel Ake\", \"calificacionMasBaja\":20}}]";
 				var array =JSON.parse(output);
 
+				console.log(output);
+
+
 				//var as1 = as[0];
 				generarGraficas(array);
 			}

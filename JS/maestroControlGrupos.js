@@ -60,19 +60,6 @@ $(document).ready(function(){
 		});
 	}
 
-	function obtenerReporteIndividual(){
-		var idGrupo = 2;
-		var idTipoActividad = 2;
-		var fechaInicio = "15-04-2019";
-		$.ajax({ url: './ActividadServicio.php',
-			data: {idGrupo: idGrupo, tipo: "reporteGrupal", idTipoActividad: idTipoActividad, fechaInicio: fechaInicio},
-			type: 'post',
-			success: function(output){
-				console.log(output);
-			}
-		});
-	}
-
 	function modificarGrupo(){
 		var idGrupo = $("#listaGrupos option:selected").val();
 		var gradoNuevo = $("#gradoNuevo").val();
@@ -108,21 +95,17 @@ $(document).ready(function(){
 	}
 
 	function generarTablaGrupos(listaGrupos){
+		
 		var tabla = $('#tabla');
+
 		var htmlListas="";
 		for (var i = 0; i < listaGrupos.lista.length; i++) {
-			htmlListas =htmlListas+ "<tr><th>"+listaGrupos.lista[i].grado+" </th><th> "+ listaGrupos.lista[i].grupo +"</th><th><button class='action-button' value=" +listaGrupos.lista[i].idGrupo + ">Generar reporte grupal</button></th></tr>";
+			htmlListas =htmlListas+ "<tr><th>"+listaGrupos.lista[i].grado+" </th><th> "+ listaGrupos.lista[i].grupo +"</th><th><button>Generar reporte grupal</button></th></tr>";
 		}
-		
 		tabla.html(htmlListas);
-		$("#tabla").on('click','button[class=action-button]',function(){
-			var idGrupo = $(this).attr('value');
-			window.localStorage.setItem('idGrupo', idGrupo);
-			 window.location = "reportes/reporteGrupal.html";
-			//alert(window.localStorage.getItem('idAlumno'));
-		});
-
 	}
+
+
 	function verificarInicioSesion(){
 		$.ajax({ url: './auth.php',
 			data: {tipo: "verificar"},
@@ -136,31 +119,7 @@ $(document).ready(function(){
 			}
 		});
 	} 
+	
 	verificarInicioSesion();
 	obtenerGrupos();
 });
-
-
-
-
-/*
-
-[{
-	"NombreActividad":"UnidadesDecenas", 
-	"ReporteActividad": {
-		"calificacionGrupal":0, 
-		"listaAlumnos":[], 
-		"porcentajeAvance":0
-	}
-},{
-"NombreActividad":"SopaLetras", 
-"ReporteActividad": {
-	"calificacionGrupal":0, 
-	"listaAlumnos":[], 
-	"porcentajeAvance":0
-	}
-}]
-
-
-
-*/

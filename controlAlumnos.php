@@ -24,7 +24,7 @@
     <a class="nav-link" href="#modificarAlumnoTab" role="tab" data-toggle="tab">Modificar alumno</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#eliminarAlumno" role="tab" data-toggle="tab">Eliminar alumno</a>
+    <a class="nav-link" href="#eliminarAlumnoTab" role="tab" data-toggle="tab">Eliminar alumno</a>
   </li>
 </ul>
 
@@ -142,7 +142,7 @@
 
 
   </div>
-  <div role="tabpanel" class="tab-pane" id="eliminarAlumno">
+  <div role="tabpanel" class="tab-pane" id="eliminarAlumnoTab">
   	<div class="container"><!--Inicio de Formulario-->
 
 		<h3>Eliminar alumno del sistema</h3>
