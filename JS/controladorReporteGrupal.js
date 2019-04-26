@@ -56,8 +56,8 @@
 		var htmlListas="";
 		var tabla = $('#tabla-calificacion');
 		for (var i = 0; i < length; i++) {
-			for(actividad in datos[i].ReporteActividad.listaALumnos){
-				var elemento =datos[i].ReporteActividad.listaALumnos[actividad];
+			for(actividad in datos[i].ReporteActividad.listaAlumnos){
+				var elemento =datos[i].ReporteActividad.listaAlumnos[actividad];
 				htmlListas =htmlListas+ "<tr><th>"+datos[i].NombreActividad+"</th><th> "+ elemento.nombre +"</th><th> "+ elemento.calificacion +"</th></tr>";
 			}
 		}
