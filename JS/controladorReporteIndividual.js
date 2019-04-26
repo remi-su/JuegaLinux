@@ -14,7 +14,7 @@
 			success: function(output) {
 				var array =JSON.parse(output);
 
-
+				console.log(output);
 
 				//var as1 = as[0];
 				generarGraficas(array);
