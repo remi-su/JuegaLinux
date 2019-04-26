@@ -70,7 +70,7 @@
 		var htmlListas="";
 		var tabla = $('#tabla-avance');
 		for (var i = 0; i < length; i++) {
-			htmlListas =htmlListas+ "<tr><th>"+porcentajes[i]['nombre']+" </th><th> "+ porcentajes[i]['porcentajeAvance'] +"</th></tr>";
+			htmlListas =htmlListas+ "<tr><th>"+porcentajes[i]['nombre']+" </th><th> "+ (porcentajes[i]['porcentajeAvance']).toFixed(1); +"</th></tr>";
 		
 		}
 		tabla.html(htmlListas);
