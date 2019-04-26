@@ -1,19 +1,19 @@
 	
 
 
-	function solicitarDatosGrupo(){
+	function solicitarDatosAlumno(){
 		var fechaInicial = $("#fecha-inicial").val();
 		var idGrupo = window.localStorage.getItem('idGrupo');
-		var idAlumno = window.localStorage.getItem('idAlumno');
-
-
-		
 		$.ajax({ url: '../ActividadServicio.php',
-			data: {tipo: "reporteIndividual", fechaInicio: fechaInicial,idAlumno:idAlumno, idGrupo:idGrupo},
+			data: {tipo: "reporteGrupal", fechaInicio: fechaInicial, idGrupo:idGrupo},
 			type: 'post',
 			success: function(output) {
+				alert(output);
 				//var prueba = "[{\"NombreActividad\":\"UnidadesDecenas\", \"ReporteActividad\": { \"calificacionPromedioAlumno\":50, \"promedioGrupal\":75, \"porcentajeAvance\":20, \"alumnoMasAlto\": \"Jorge2\", \"calificacionMasAlta\":90, \"alumnoMasBajo\" : \"Samuel Ake\", \"calificacionMasBaja\":20 }}, { \"NombreActividad\":\"SopaLetras\", \"ReporteActividad\": { \"calificacionPromedioAlumno\":50, \"promedioGrupal\":76, \"porcentajeAvance\":23, \"alumnoMasAlto\": \"Jorge\", \"calificacionMasAlta\":100, \"alumnoMasBajo\" : \"Samuel Ake\", \"calificacionMasBaja\":20}}]";
+
 				var array =JSON.parse(output);
+
+
 
 				//var as1 = as[0];
 				generarGraficas(array);
@@ -253,7 +253,7 @@
 		    }		});
 	}
 
-	$("#generar-reporte").click(solicitarDatosGrupo);
+	$("#generar-reporte").click(solicitarDatosAlumno);
 	prepararVentana();
 /*
 [
