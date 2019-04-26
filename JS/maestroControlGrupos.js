@@ -113,6 +113,7 @@ $(document).ready(function(){
 		for (var i = 0; i < listaGrupos.lista.length; i++) {
 			htmlListas =htmlListas+ "<tr><th>"+listaGrupos.lista[i].grado+" </th><th> "+ listaGrupos.lista[i].grupo +"</th><th><button class='action-button' value=" +listaGrupos.lista[i].idGrupo + ">Generar reporte grupal</button></th></tr>";
 		}
+		
 		tabla.html(htmlListas);
 		$("#tabla").on('click','button[class=action-button]',function(){
 			var idGrupo = $(this).attr('value');
