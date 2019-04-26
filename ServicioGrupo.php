@@ -11,7 +11,6 @@ function ConectarBaseDatos($sql){
 		$mysqli->close();
 		return $resultado;               
 	}
-
 }
 
 function crearGrupo (){

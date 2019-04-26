@@ -101,6 +101,7 @@ function obtenerReporteGrupalA($idTipoActividad){
 	$reporteGrupalJSON = '{"calificacionGrupal":'.$calificacionGrupal.', "listaAlumnos":'.$listaAlumnosJSON.', "porcentajeAvance":'. $porcentajeAvance.'}';
 	return $reporteGrupalJSON;
 }
+
 function obtenerReporteIndividual(){
 	$sql = "SELECT DISTINCT idTipoActividad FROM `actividades` WHERE 1";
 	$resultado = ConectarBaseDatos($sql);

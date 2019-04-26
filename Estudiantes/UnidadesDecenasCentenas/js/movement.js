@@ -175,8 +175,7 @@ function disable(){
 function generateOptionPanel(){
     var window = document.getElementById('panel-container');
     window.innerHTML = "<div id='control-panel' class='control-panel'>"+
-                        "<h3 style='font-size: 2.5
-                        rem !important'> ¡Rápido!," + question + "  </h3> "+
+                        "<h3 style='font-size: 2.5rem !important'> ¡Rápido!," + question + "  </h3> "+
                         "<div id='option-panel' class='option_panel'>" +
                         "<button id='option_a' value='1' class='button-option button-type'></button>" +
                         "<button id='option_b' value='2' class='button-option button-type'></button>" +

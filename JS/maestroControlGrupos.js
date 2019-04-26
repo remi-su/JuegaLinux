@@ -60,19 +60,6 @@ $(document).ready(function(){
 		});
 	}
 
-	function obtenerReporteIndividual(){
-		var idGrupo = 2;
-		var idTipoActividad = 2;
-		var fechaInicio = "15-04-2019";
-		$.ajax({ url: './ActividadServicio.php',
-			data: {idGrupo: idGrupo, tipo: "reporteGrupal", idTipoActividad: idTipoActividad, fechaInicio: fechaInicio},
-			type: 'post',
-			success: function(output){
-				console.log(output);
-			}
-		});
-	}
-
 	function modificarGrupo(){
 		var idGrupo = $("#listaGrupos option:selected").val();
 		var gradoNuevo = $("#gradoNuevo").val();
