@@ -130,3 +130,56 @@ $(document).ready(function(){
 	verificarInicioSesion();
 	obtenerGrupos();
 });
+
+
+/*
+[
+{
+	"NombreActividad": "UnidadesDecenas",
+	"ReporteActividad": {
+	"calificacionGrupal": 29.166666667,
+	"listaALumnos": [
+		{
+		"nombre":"Samuel Ake",
+		"calificacion": 87.5
+		},
+		{
+			"nombre":"Alumno2",
+			"calificacion": 90.5
+		},
+		{
+			"nombre":"Alumno3",
+			"calificacion": 45.5
+		}
+
+	],
+	"porcentajeAvance":3.0000212
+	}
+}
+
+{
+	"NombreActividad": "UnidadesDecenas",
+	"ReporteActividad": {
+	"calificacionGrupal": 29.166666667,
+	"listaALumnos": [
+		{
+		"nombre":"Samuel Ake",
+		"calificacion": 87.5
+		},
+		{
+			"nombre":"Alumno2",
+			"calificacion": 90.5
+		},
+		{
+			"nombre":"Alumno3",
+			"calificacion": 45.5
+		}
+
+	],
+	"porcentajeAvance":3.0000212
+	}
+
+}]
+
+*/
+

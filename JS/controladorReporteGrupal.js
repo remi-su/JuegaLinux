@@ -8,13 +8,10 @@
 			data: {tipo: "reporteGrupal", fechaInicio: fechaInicial, idGrupo:idGrupo},
 			type: 'post',
 			success: function(output) {
-				alert(output);
-				//var prueba = "[{\"NombreActividad\":\"UnidadesDecenas\", \"ReporteActividad\": { \"calificacionPromedioAlumno\":50, \"promedioGrupal\":75, \"porcentajeAvance\":20, \"alumnoMasAlto\": \"Jorge2\", \"calificacionMasAlta\":90, \"alumnoMasBajo\" : \"Samuel Ake\", \"calificacionMasBaja\":20 }}, { \"NombreActividad\":\"SopaLetras\", \"ReporteActividad\": { \"calificacionPromedioAlumno\":50, \"promedioGrupal\":76, \"porcentajeAvance\":23, \"alumnoMasAlto\": \"Jorge\", \"calificacionMasAlta\":100, \"alumnoMasBajo\" : \"Samuel Ake\", \"calificacionMasBaja\":20}}]";
-
-				var array =JSON.parse(output);
-
-
-
+				
+				var prueba = "[{ \"NombreActividad\": \"UnidadesDecenas\", \"ReporteActividad\": { \"calificacionGrupal\": 29, \"listaALumnos\": [ { \"nombre\":\"Samuel Ake\", \"calificacion\": 87.5 }, { \"nombre\":\"Alumno2\", \"calificacion\": 90.5 }, { \"nombre\":\"Alumno3\", \"calificacion\": 45.5 } ], \"porcentajeAvance\":3.12 } }, { \"NombreActividad\": \"SopaLetras\", \"ReporteActividad\": { \"calificacionGrupal\": 29.1667, \"listaALumnos\": [ { \"nombre\":\"Samuel Ake\", \"calificacion\": 87.5 }, { \"nombre\":\"Alumno2\", \"calificacion\": 90.5 }, { \"nombre\":\"Alumno3\", \"calificacion\": 45.5 } ], \"porcentajeAvance\":3.212 } }]";
+				//alert(prueba);
+				var array =JSON.parse(prueba);
 				//var as1 = as[0];
 				generarGraficas(array);
 			}
@@ -31,8 +28,9 @@
 
 	function generarGraficas(array){
 		//generarGraficaPromedioPorCalificacion(array);
-		generarGraficaComparacion(array);
-		mostrarAreasDebiles(array);
+		generarGraficaPromedioPorCalificacion(array);
+		generarTablaCalificaciones(array);
+		//mostrarAreasDebiles(array);
 		mostrarPorcentajeAvance(array);
 	}
 
@@ -49,6 +47,21 @@
 				porcentajes.push(actividad);
 		}
 		return porcentajes;
+	}
+
+	function generarTablaCalificaciones(datos){
+		//var porcentajes = obtenerPorcentajeAvance(datos);
+		var length = datos.length;
+		//alert(length);*/
+		var htmlListas="";
+		var tabla = $('#tabla-calificacion');
+		for (var i = 0; i < length; i++) {
+			for(actividad in datos[i].ReporteActividad.listaALumnos){
+				var elemento =datos[i].ReporteActividad.listaALumnos[actividad];
+				htmlListas =htmlListas+ "<tr><th>"+datos[i].NombreActividad+"</th><th> "+ elemento.nombre +"</th><th> "+ elemento.calificacion +"</th></tr>";
+			}
+		}
+		tabla.html(htmlListas);
 	}
 
 	function mostrarPorcentajeAvance(datos){
@@ -74,15 +87,14 @@
 		tabla.html(htmlListas);
 		
 	}
-
-
 	function calcularPromedios(json){
 		var promedios = [];
 		var length = json.length;
 		for (var i = 0; i < length; i++) {
 			var nombre = json[i].NombreActividad;
-			promedios[nombre] = json[i].ReporteActividad.calificacionPromedioAlumno;
-			//promedios.push(Math.floor(Math.random()*255));
+			//alert(JSON.stringify(json[i].ReporteActividad));
+			promedios.push(json[i].ReporteActividad.calificacionGrupal);
+
 		}
 		return promedios;
 	}
@@ -94,12 +106,16 @@
 			var actividad = [];
 			var nombre = listaActividades[i].NombreActividad;
 
-			var calificacion = listaActividades[i].ReporteActividad.calificacionPromedioAlumno;
-			if( calificacion <70){
-				actividad['nombre'] = nombre;
-				actividad['calificacion']= calificacion;
-				areasDebiles.push(actividad);
+			var ListaEstudiantes = listaActividades[i].ReporteActividad;
+			for(estudiante in ListaEstudiantes){
+				if( estudiante.calificacion <70){
+					actividad['n']
+					actividad['nombre'] = estudiante.nombre;
+					actividad['calificacion']= estudiante.calificacion;
+					areasDebiles.push(actividad);
+				}
 			}
+
 			
 		}
 		return areasDebiles;
@@ -129,7 +145,7 @@
 	}
 
 	function generarGraficaPromedioPorCalificacion(datos){
-		var ctx = document.getElementById("grafica-promedios").getContext('2d');
+		var ctx = document.getElementById("grafica-comparacion").getContext('2d');
 		var nombresActividades = obtenerNombreActividades(datos);
 		var promedios = calcularPromedios(datos);
 		var colores =prepararColores(datos);
@@ -139,7 +155,7 @@
 		    data: {
 		        labels: nombresActividades,
 		        datasets: [{
-		            label: 'Calificación promedio por actividad',
+		            label: [],
 		            data: promedios,
 		            backgroundColor: colores,
 		            borderColor: bordes,
@@ -240,7 +256,7 @@
 		    type: 'bar',
 		    data: {
 		    labels: nombresActividades,
-			datasets: datosPorEstudiante,
+			datasets: promedios,
 		    },
 		   	options: {
 		        scales: {
@@ -257,105 +273,51 @@
 	prepararVentana();
 /*
 [
-	{
-		"NombreActividad":"UnidadesDecenas", 
-		"ReporteActividad": {
-			"calificacionPromedioAlumno":0, 
-			"promedioGrupal":0, 
-			"porcentajeAvance":0, 
-			"alumnoMasAlto": " ", 
-			"calificacionMasAlta":0, 
-			"alumnoMasBajo" : "Samuel Ake", 
-			"calificacionMasBaja":0
-		}},
-	{
-	"NombreActividad":"SopaLetras", 
+{
+	"NombreActividad": "UnidadesDecenas",
 	"ReporteActividad": {
-		"calificacionPromedioAlumno":0, 
-		"promedioGrupal":0, 
-		"porcentajeAvance":0, 
-		"alumnoMasAlto": " ", 
-		"calificacionMasAlta":0, 
-		"alumnoMasBajo" : "Samuel Ake", 
-		"calificacionMasBaja":0
-	}}
-]
+	"calificacionGrupal": 29.1666667,
+	"listaALumnos": [
+		{
+		"nombre":"Samuel Ake",
+		"calificacion": 87.5
+		},
+		{
+			"nombre":"Alumno2",
+			"calificacion": 90.5
+		},
+		{
+			"nombre":"Alumno3",
+			"calificacion": 45.5
+		}
 
+	],
+	"porcentajeAvance":3.0000212
+	}
+}
+,
+{
+	"NombreActividad": "UnidadesDecenas",
+	"ReporteActividad": {
+	"calificacionGrupal": 29.166667,
+	"listaALumnos": [
+		{
+		"nombre":"Samuel Ake",
+		"calificacion": 87.5
+		},
+		{
+			"nombre":"Alumno2",
+			"calificacion": 90.5
+		},
+		{
+			"nombre":"Alumno3",
+			"calificacion": 45.5
+		}
 
-function generarGraficaPromedioPorCalificacion(datos){
-		var ctx = document.getElementById("grafica-promedios").getContext('2d');
-		var nombresActividades = obtenerNombreActividades(datos);
-		var promedios = calcularPromedios(datos);
-		var colores =prepararColores(datos);
-		var myChart = new Chart(ctx, {
-		    type: 'bar',
-		    data: {
-		        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-		        datasets: [{
-		            label: 'Calificación promedio por actividad',
-		            data: [12, 19, 3, 5, 2, 3],
-		            backgroundColor: [
-		                'rgba(255, 99, 132, 0.2)',
-		                'rgba(54, 162, 235, 0.2)',
-		                'rgba(255, 206, 86, 0.2)',
-		                'rgba(75, 192, 192, 0.2)',
-		                'rgba(153, 102, 255, 0.2)',
-		                'rgba(255, 159, 64, 0.2)'
-		            ],
-		            borderColor: [
-		                'rgba(255, 99, 132, 1)',
-		                'rgba(54, 162, 235, 1)',
-		                'rgba(255, 206, 86, 1)',
-		                'rgba(75, 192, 192, 1)',
-		                'rgba(153, 102, 255, 1)',
-		                'rgba(255, 159, 64, 1)'
-		            ],
-		            borderWidth: 1
-		        }]
-		    },
-		    options: {
-		        scales: {
-		            yAxes: [{
-		                ticks: {
-		                    beginAtZero: true
-		                }
-		            }]
-		        }
-		    }
-		});
+	],
+	"porcentajeAvance":3.0000212
 	}
 
-
-function generarGraficaComparacion(datos){
-		var ctx = document.getElementById("grafica-comparacion").getContext('2d');
-		var nombresActividades = obtenerNombreActividades(datos);
-		var promedios = calcularPromedios(datos);
-		var colores =prepararColores(datos);
-		var bordes = prepararColores(datos);
-		var myChart = new Chart(ctx, {
-		    type: 'radar',
-		    data: {
-		    labels: ["English", "Maths", "Physics", "Chemistry", "Biology", "History"],
-			datasets: [{
-				label: "Student A",
-				backgroundColor: "rgba(200,0,0,0.2)",
-				data: [65, 75, 70, 80, 60, 80]
-					}, {
-			    label: "Student B",
-			    backgroundColor: "rgba(0,0,200,0.2)",
-			    data: [54, 65, 60, 70, 70, 75]
-				  }]
-		    },
-		    options: {
-
-		    }
-		});
-	}
-
-
-datos de prueba
-
-var prueba = "[{\"NombreActividad\":\"UnidadesDecenas\", \"ReporteActividad\": { \"calificacionPromedioAlumno\":50, \"promedioGrupal\":75, \"porcentajeAvance\":20, \"alumnoMasAlto\": \"Jorge2\", \"calificacionMasAlta\":90, \"alumnoMasBajo\" : \"Samuel Ake\", \"calificacionMasBaja\":20 }}, { \"NombreActividad\":\"SopaLetras\", \"ReporteActividad\": { \"calificacionPromedioAlumno\":50, \"promedioGrupal\":76, \"porcentajeAvance\":23, \"alumnoMasAlto\": \"Jorge\", \"calificacionMasAlta\":100, \"alumnoMasBajo\" : \"Samuel Ake\", \"calificacionMasBaja\":20}}]";
-
+}]
 
 */
